@@ -1,21 +1,22 @@
-package com.haoxt.mpos.activity.my;
+package com.haoxt.mpos.view.my;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
 
 import tft.mpos.library.base.BaseActivity;
 
-/** 机具申领 Activity
+/** 实名认证信息 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class MyPOSApplyActivity extends BaseActivity implements OnClickListener {
+public class RealNameInfoActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -25,7 +26,7 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, MyPOSApplyActivity.class);
+		return new Intent(context, RealNameInfoActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -34,7 +35,7 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_pos_apply);
+		setContentView(R.layout.realname_info);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -47,14 +48,16 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private TextView mypos_apply_info_name,mypos_apply_info_phone,mypos_apply_info_area,mypos_apply_info_address;
+	private TextView realname_info_name,realname_info_id,realname_info_cardnum,realname_info_bank;
+
+	private Button realname_info_togo_realname_auth ;
 	@Override
 	public void initView() {//必须调用
 
-		mypos_apply_info_name = (TextView)findViewById(R.id.mypos_apply_info_name);
-		mypos_apply_info_phone = (TextView)findViewById(R.id.mypos_apply_info_phone);
-		mypos_apply_info_area = (TextView)findViewById(R.id.mypos_apply_info_area);
-		mypos_apply_info_address = (TextView)findViewById(R.id.mypos_apply_info_address);
+		realname_info_name = (TextView)findViewById(R.id.realname_info_name);
+		realname_info_id = (TextView)findViewById(R.id.realname_info_id);
+		realname_info_cardnum = (TextView)findViewById(R.id.realname_info_cardnum);
+		realname_info_bank = (TextView)findViewById(R.id.realname_info_bank);
 
 	}
 
@@ -89,7 +92,7 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	@Override
 	public void initEvent() {//必须调用
 
-		findViewById(R.id.mypos_apply_info_commit).setOnClickListener(this);
+		findViewById(R.id.realname_info_togo_realname_auth).setOnClickListener(this);
 
 	}
 
@@ -104,8 +107,10 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-			case R.id.mypos_apply_info_commit:
-
+			case R.id.realname_info_togo_realname_auth:
+				Intent intent = new Intent(context, RealNameAuthResultActivity.class);
+				intent.putExtra("activityfrom", "realnameinfo");
+				toActivity(intent);
 				break;
 
 			default:
