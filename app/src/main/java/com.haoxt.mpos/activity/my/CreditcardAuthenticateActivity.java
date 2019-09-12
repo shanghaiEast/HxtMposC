@@ -1,5 +1,5 @@
 
-package com.haoxt.mpos.view.my;
+package com.haoxt.mpos.activity.my;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.haoxt.mpos.R;
+import com.haoxt.mpos.activity.UserActivity;
 import com.haoxt.mpos.adapter.CardInfoAdapter;
+import com.haoxt.mpos.adapter.UserAdapter;
 import com.haoxt.mpos.model.CardInfo;
+import com.haoxt.mpos.model.User;
 import com.haoxt.mpos.util.HttpRequest;
 import com.haoxt.mpos.util.TestUtil;
 
@@ -25,7 +28,7 @@ import tft.mpos.library.util.JSON;
 
 /**
  *
- * 我的结算卡
+ * 信用卡认证
  *
  * */
 
@@ -34,7 +37,7 @@ import tft.mpos.library.util.JSON;
  * @warn 复制到其它工程内使用时务必修改import R文件路径为所在应用包名
  * @use toActivity(DemoHttpListActivity.createIntent(...));
  */
-public class MyDebitCardActivity extends BaseHttpListActivity<CardInfo, ListView, CardInfoAdapter> implements OnBottomDragListener {
+public class CreditcardAuthenticateActivity extends BaseHttpListActivity<CardInfo, ListView, CardInfoAdapter> implements OnBottomDragListener {
 	//	private static final String TAG = "DemoHttpListActivity";
 
 
@@ -52,7 +55,7 @@ public class MyDebitCardActivity extends BaseHttpListActivity<CardInfo, ListView
 	 * @return
 	 */
 	public static Intent createIntent(Context context, int range) {
-		return new Intent(context, MyDebitCardActivity.class).putExtra(INTENT_RANGE, range);
+		return new Intent(context, CreditcardAuthenticateActivity.class).putExtra(INTENT_RANGE, range);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -64,7 +67,7 @@ public class MyDebitCardActivity extends BaseHttpListActivity<CardInfo, ListView
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//TODO demo_http_list_activity改为你所需要的layout文件；传this是为了底部左右滑动手势
-		setContentView(R.layout.activity_my_debit_card_list, this);
+		setContentView(R.layout.activity_creditcard_authenticate_list, this);
 
 		intent = getIntent();
 		range = intent.getIntExtra(INTENT_RANGE, range);

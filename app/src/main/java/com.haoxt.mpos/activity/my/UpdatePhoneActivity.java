@@ -1,4 +1,4 @@
-package com.haoxt.mpos.view.my;
+package com.haoxt.mpos.activity.my;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,18 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.haoxt.mpos.R;
-import com.haoxt.mpos.activity.AboutActivity;
 
 import tft.mpos.library.base.BaseActivity;
 
-/** 绑定银行卡 Activity
+/** 修改手机号 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class MyBankCardAddActivity extends BaseActivity implements OnClickListener {
+public class UpdatePhoneActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -27,7 +26,7 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, MyBankCardAddActivity.class);
+		return new Intent(context, UpdatePhoneActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -36,7 +35,7 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_bank_card_add);
+		setContentView(R.layout.update_phone);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -49,28 +48,19 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private EditText real_name_auth_debit_card_name,real_name_auth_debit_card_account,real_name_auth_debit_card_openbank,real_name_auth_debicard_idcard_area,real_name_auth_debicard_subbranch;
-
-	private ImageView btn_real_name_auth_debit_card_side ;
-
+	private EditText oldPhone, oldPhoneVerificationCode, newPhone,newPhonVerificationCode;
 	@Override
 	public void initView() {//必须调用
 
-		real_name_auth_debit_card_name = (EditText)findViewById(R.id.real_name_auth_debit_card_name);
-		real_name_auth_debit_card_account = (EditText)findViewById(R.id.real_name_auth_debit_card_account);
-		real_name_auth_debit_card_openbank = (EditText)findViewById(R.id.real_name_auth_debit_card_openbank);
-		real_name_auth_debicard_idcard_area = (EditText)findViewById(R.id.real_name_auth_debicard_idcard_area);
-		real_name_auth_debicard_subbranch = (EditText)findViewById(R.id.real_name_auth_debicard_subbranch);
+		oldPhone = (EditText) findViewById(R.id.et_update_phone_old);
+		oldPhoneVerificationCode = (EditText) findViewById(R.id.et_update_phone_old_verification_code);
+		newPhone = (EditText) findViewById(R.id.et_update_phone_new);
+		newPhonVerificationCode = (EditText) findViewById(R.id.et_update_phone_new_verification_code);
 
-//		btn_real_name_auth_debit_card_side = (ImageView)findViewById(R.id.btn_real_name_auth_debit_card_side);
 	}
 
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-
-
 
 
 
@@ -100,10 +90,9 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
 	@Override
 	public void initEvent() {//必须调用
 
-		findView(R.id.btn_real_name_auth_debit_card_side).setOnClickListener(this);
-		findView(R.id.real_name_auth_debit_card_openbank).setOnClickListener(this);
-		findView(R.id.real_name_auth_debicard_subbranch).setOnClickListener(this);
-		findView(R.id.btn_add_bank_msg_upload).setOnClickListener(this);
+		findViewById(R.id.bt_update_phone_old_verification_code_button).setOnClickListener(this);
+		findViewById(R.id.bt_update_phone_new_verification_code_button).setOnClickListener(this);
+		findViewById(R.id.btn_update_phone).setOnClickListener(this);
 
 	}
 
@@ -118,18 +107,15 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-			case R.id.btn_real_name_auth_id_card_side:
-//				showShortToast("onClick  ivSettingHead");
+			case R.id.bt_update_phone_old_verification_code_button:
 				break;
-			case R.id.btn_real_name_auth_id_card_front:
-//				toActivity(SettingActivity.createIntent(context));
+
+			case R.id.bt_update_phone_new_verification_code_button:
 				break;
-			case R.id.btn_real_name_authentication_upload:
-				toActivity(AboutActivity.createIntent(context));
+
+			case R.id.btn_update_phone:
 				break;
-			case R.id.btn_add_bank_msg_upload:
-				toActivity(MerchantInfoAuthActivity.createIntent(context));
-				break;
+
 			default:
 				break;
 		}

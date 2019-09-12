@@ -1,21 +1,22 @@
-package com.haoxt.mpos.view.my;
+package com.haoxt.mpos.activity.my;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
 
 import tft.mpos.library.base.BaseActivity;
 
-/** 修改登陆密码 Activity
+/** 我的即时额度 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class ReviseLoginPwdActivity extends BaseActivity implements OnClickListener {
+public class MyImmediateQuotaActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -25,7 +26,7 @@ public class ReviseLoginPwdActivity extends BaseActivity implements OnClickListe
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, ReviseLoginPwdActivity.class);
+		return new Intent(context, MyImmediateQuotaActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -34,7 +35,7 @@ public class ReviseLoginPwdActivity extends BaseActivity implements OnClickListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.revise_login_pwd);
+		setContentView(R.layout.my_inmediate_quota);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -47,13 +48,16 @@ public class ReviseLoginPwdActivity extends BaseActivity implements OnClickListe
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private TextView revise_login_pwd_oldpwd,revise_login_pwd_newpwd,revise_login_pwd_againpwd;
+	private TextView realname_info_name,realname_info_id,realname_info_cardnum,realname_info_bank;
+
+	private Button realname_info_togo_realname_auth ;
 	@Override
 	public void initView() {//必须调用
 
-		revise_login_pwd_oldpwd = (TextView)findViewById(R.id.revise_login_pwd_oldpwd);
-		revise_login_pwd_newpwd = (TextView)findViewById(R.id.revise_login_pwd_newpwd);
-		revise_login_pwd_againpwd = (TextView)findViewById(R.id.revise_login_pwd_againpwd);
+		realname_info_name = (TextView)findViewById(R.id.realname_info_name);
+		realname_info_id = (TextView)findViewById(R.id.realname_info_id);
+		realname_info_cardnum = (TextView)findViewById(R.id.realname_info_cardnum);
+		realname_info_bank = (TextView)findViewById(R.id.realname_info_bank);
 
 	}
 
@@ -88,7 +92,7 @@ public class ReviseLoginPwdActivity extends BaseActivity implements OnClickListe
 	@Override
 	public void initEvent() {//必须调用
 
-		findViewById(R.id.revise_pwd_info_commit).setOnClickListener(this);
+//		findViewById(R.id.realname_info_togo_realname_auth).setOnClickListener(this);
 
 	}
 
@@ -103,8 +107,10 @@ public class ReviseLoginPwdActivity extends BaseActivity implements OnClickListe
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-			case R.id.revise_pwd_info_commit:
-
+			case R.id.realname_info_togo_realname_auth:
+				Intent intent = new Intent(context, RealNameAuthResultActivity.class);
+				intent.putExtra("activityfrom", "realnameinfo");
+				toActivity(intent);
 				break;
 
 			default:

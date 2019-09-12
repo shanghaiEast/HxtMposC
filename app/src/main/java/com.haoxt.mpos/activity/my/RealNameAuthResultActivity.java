@@ -1,21 +1,28 @@
-package com.haoxt.mpos.view.my;
+package com.haoxt.mpos.activity.my;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.zxing.common.StringUtils;
 import com.haoxt.mpos.R;
+import com.haoxt.mpos.activity.AboutActivity;
 
 import tft.mpos.library.base.BaseActivity;
+import tft.mpos.library.util.StringUtil;
 
-/** 机具申领 Activity
+/** 认证结果 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class MyPOSApplyActivity extends BaseActivity implements OnClickListener {
+public class RealNameAuthResultActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -25,7 +32,7 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, MyPOSApplyActivity.class);
+		return new Intent(context, RealNameAuthResultActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -34,7 +41,7 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_pos_apply);
+		setContentView(R.layout.real_name_result);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -47,19 +54,35 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private TextView mypos_apply_info_name,mypos_apply_info_phone,mypos_apply_info_area,mypos_apply_info_address;
+	private TextView realname_result;
+	private String activityfrom;
+	private Button goto_credit_card, goto_realname_auth_msg;
+	private LinearLayout creadit_auth_result_success;
+
 	@Override
 	public void initView() {//必须调用
 
-		mypos_apply_info_name = (TextView)findViewById(R.id.mypos_apply_info_name);
-		mypos_apply_info_phone = (TextView)findViewById(R.id.mypos_apply_info_phone);
-		mypos_apply_info_area = (TextView)findViewById(R.id.mypos_apply_info_area);
-		mypos_apply_info_address = (TextView)findViewById(R.id.mypos_apply_info_address);
+		realname_result = (TextView)findViewById(R.id.realname_result);
+		creadit_auth_result_success =  (LinearLayout)findViewById(R.id.creadit_auth_result_success);
 
+		Intent intent =getIntent();
+		activityfrom = intent.getStringExtra("activityfrom");
+		if (!StringUtil.isEmpty(activityfrom)&&activityfrom.equals("realnameinfo")){
+			realname_result.setVisibility(View.VISIBLE);
+		}else{
+			creadit_auth_result_success.setVisibility(View.VISIBLE);
+		}
+
+
+//		btn_real_name_auth_debit_card_side = (ImageView)findViewById(R.id.btn_real_name_auth_debit_card_side);
 	}
 
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
 
 
 
@@ -89,7 +112,8 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	@Override
 	public void initEvent() {//必须调用
 
-		findViewById(R.id.mypos_apply_info_commit).setOnClickListener(this);
+		findViewById(R.id.goto_credit_card).setOnClickListener(this);
+		findViewById(R.id.goto_realname_auth_msg).setOnClickListener(this);
 
 	}
 
@@ -104,10 +128,12 @@ public class MyPOSApplyActivity extends BaseActivity implements OnClickListener 
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-			case R.id.mypos_apply_info_commit:
-
+			case R.id.goto_credit_card:
+				toActivity(CreditcardVerifedActivity.createIntent(context));
 				break;
-
+			case R.id.goto_realname_auth_msg:
+				toActivity(RealNameInfoActivity.createIntent(context));
+				break;
 			default:
 				break;
 		}

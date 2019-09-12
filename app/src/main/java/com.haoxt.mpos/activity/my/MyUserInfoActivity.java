@@ -1,22 +1,21 @@
-package com.haoxt.mpos.view.my;
+package com.haoxt.mpos.activity.my;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
 
 import tft.mpos.library.base.BaseActivity;
 
-/** 我的即时额度 Activity
+/** 商户信息 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class MyImmediateQuotaActivity extends BaseActivity implements OnClickListener {
+public class MyUserInfoActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -26,7 +25,7 @@ public class MyImmediateQuotaActivity extends BaseActivity implements OnClickLis
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, MyImmediateQuotaActivity.class);
+		return new Intent(context, MyUserInfoActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -35,7 +34,7 @@ public class MyImmediateQuotaActivity extends BaseActivity implements OnClickLis
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_inmediate_quota);
+		setContentView(R.layout.my_user_info);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -48,16 +47,22 @@ public class MyImmediateQuotaActivity extends BaseActivity implements OnClickLis
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private TextView realname_info_name,realname_info_id,realname_info_cardnum,realname_info_bank;
-
-	private Button realname_info_togo_realname_auth ;
+	private TextView merchantName,merchantAddress,merchantNo,merchantContacts,merchantNumber,merchantOpenTime,merchantStatus,merchantDebitRate,merchantCreditRate,merchantQrcodeRate;
 	@Override
 	public void initView() {//必须调用
 
-		realname_info_name = (TextView)findViewById(R.id.realname_info_name);
-		realname_info_id = (TextView)findViewById(R.id.realname_info_id);
-		realname_info_cardnum = (TextView)findViewById(R.id.realname_info_cardnum);
-		realname_info_bank = (TextView)findViewById(R.id.realname_info_bank);
+		merchantName = (TextView)findViewById(R.id.tx_my_merchant_name);
+		merchantAddress = (TextView)findViewById(R.id.tv_my_merchant_address);
+
+		merchantNo = (TextView)findViewById(R.id.tv_myuser_merchant_no);
+		merchantContacts = (TextView)findViewById(R.id.tv_myuser_merchant_contacts);
+		merchantNumber = (TextView)findViewById(R.id.tv_myuser_merchant_number);
+		merchantOpenTime = (TextView)findViewById(R.id.tv_myuser_merchant_opentime);
+		merchantStatus = (TextView)findViewById(R.id.tv_myuser_merchant_status);
+		merchantDebitRate = (TextView)findViewById(R.id.tv_myuser_merchant_debit_rate);
+		merchantCreditRate = (TextView)findViewById(R.id.tv_myuser_merchant_credit_rate);
+		merchantQrcodeRate = (TextView)findViewById(R.id.tv_myuser_merchant_qrcode_rate);
+
 
 	}
 
@@ -106,16 +111,16 @@ public class MyImmediateQuotaActivity extends BaseActivity implements OnClickLis
 	@Override
 	public void onClick(View view) {
 
-		switch (view.getId()) {
-			case R.id.realname_info_togo_realname_auth:
-				Intent intent = new Intent(context, RealNameAuthResultActivity.class);
-				intent.putExtra("activityfrom", "realnameinfo");
-				toActivity(intent);
-				break;
-
-			default:
-				break;
-		}
+//		switch (view.getId()) {
+//			case R.id.realname_info_togo_realname_auth:
+//				Intent intent = new Intent(context, RealNameAuthResultActivity.class);
+//				intent.putExtra("activityfrom", "realnameinfo");
+//				toActivity(intent);
+//				break;
+//
+//			default:
+//				break;
+//		}
 
 	}
 

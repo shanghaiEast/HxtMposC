@@ -1,21 +1,28 @@
-package com.haoxt.mpos.view.home;
+package com.haoxt.mpos.activity.my;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.haoxt.mpos.R;
+import com.haoxt.mpos.activity.AboutActivity;
+import com.haoxt.mpos.activity.SettingActivity;
 
 import tft.mpos.library.base.BaseActivity;
+import tft.mpos.library.interfaces.OnBottomDragListener;
+import tft.mpos.library.util.Log;
+import tft.mpos.library.util.SettingUtil;
 
-/** 机具绑定 Activity
+/** 实名认证 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class DeviceBindActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class RealNameAuthenticationActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -25,7 +32,7 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, DeviceBindActivity.class);
+		return new Intent(context, RealNameAuthenticationActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -34,7 +41,7 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_pos_info);
+		setContentView(R.layout.real_name_authentication);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -47,16 +54,29 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private ListView lvDeviceList;
+	private ImageView cardSide,cardFront ;
+	private EditText tv_name,tv_id,tx_valid;
+	private RadioButton rb1,rb2;
+//	private Button
+
+
 	@Override
 	public void initView() {//必须调用
 
-		lvDeviceList = (ListView) findViewById(R.id.lv_device_list);
+		tv_name = findView(R.id.real_name_auth_idcard_name);
+		tv_id = findView(R.id.real_name_auth_idcard_number);
 
+		tx_valid = findView(R.id.real_name_auth_idcard_idcard_valid);
+		rb1 = findView(R.id.real_name_auth_idcard_rdb1);
+		rb2 = findView(R.id.real_name_auth_idcard_rdb2);
 	}
 
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
 
 
 
@@ -86,8 +106,9 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 	@Override
 	public void initEvent() {//必须调用
 
-//		findViewById(R.id.realname_info_togo_realname_auth).setOnClickListener(this);
-
+		findView(R.id.btn_real_name_auth_id_card_side).setOnClickListener(this);
+		findView(R.id.btn_real_name_auth_id_card_front).setOnClickListener(this);
+		findView(R.id.btn_real_name_authentication_upload).setOnClickListener(this);
 	}
 
 
@@ -97,10 +118,22 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 
 	}
 
-
-
 	@Override
-	public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+	public void onClick(View view) {
+
+		switch (view.getId()) {
+			case R.id.btn_real_name_auth_id_card_side:
+//				showShortToast("onClick  ivSettingHead");
+				break;
+			case R.id.btn_real_name_auth_id_card_front:
+//				toActivity(SettingActivity.createIntent(context));
+				break;
+			case R.id.btn_real_name_authentication_upload:
+				toActivity(MyBankCardAddActivity.createIntent(context));
+				break;
+			default:
+				break;
+		}
 
 	}
 

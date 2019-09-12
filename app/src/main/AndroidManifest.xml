@@ -100,87 +100,87 @@
         <!-- view <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
         <activity
-            android:name=".view.home.DeviceBindActivity"
+            android:name=".activity.home.DeviceBindActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.CreditcardAuthenticateActivity"
+            android:name=".activity.my.CreditcardAuthenticateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.CreditcardVerifedActivity"
+            android:name=".activity.my.CreditcardVerifedActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MerchantInfoAuthActivity"
+            android:name=".activity.my.MerchantInfoAuthActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MyBankCardAddActivity"
+            android:name=".activity.my.MyBankCardAddActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MyDebitCardActivity"
+            android:name=".activity.my.MyDebitCardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MyImmediateQuotaActivity"
+            android:name=".activity.my.MyImmediateQuotaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MyPOSApplyActivity"
+            android:name=".activity.my.MyPOSApplyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MyPOSInfoActivity"
+            android:name=".activity.my.MyPOSInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MySettingActivity"
+            android:name=".activity.my.MySettingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.MyUserInfoActivity"
+            android:name=".activity.my.MyUserInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.RealNameAuthenticationActivity"
+            android:name=".activity.my.RealNameAuthenticationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.RealNameAuthResultActivity"
+            android:name=".activity.my.RealNameAuthResultActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.RealNameInfoActivity"
+            android:name=".activity.my.RealNameInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.ReviseLoginPwdActivity"
+            android:name=".activity.my.ReviseLoginPwdActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.UpdatePhoneActivity"
+            android:name=".activity.my.UpdatePhoneActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".view.my.UpdateDebitCardActivity"
+            android:name=".activity.my.UpdateDebitCardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
