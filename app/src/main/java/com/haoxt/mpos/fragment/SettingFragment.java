@@ -24,19 +24,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
-import com.haoxt.mpos.activity.AboutActivity;
-import com.haoxt.mpos.activity.SettingActivity;
-import com.haoxt.mpos.activity.my.CreditcardAuthenticateActivity;
-import com.haoxt.mpos.activity.my.MyDebitCardActivity;
-import com.haoxt.mpos.activity.my.MyImmediateQuotaActivity;
-import com.haoxt.mpos.activity.my.MyPOSApplyActivity;
-import com.haoxt.mpos.activity.my.MyPOSInfoActivity;
-import com.haoxt.mpos.activity.my.MySettingActivity;
-import com.haoxt.mpos.activity.my.MyUserInfoActivity;
-import com.haoxt.mpos.activity.my.RealNameAuthenticationActivity;
+import com.haoxt.mpos.view.my.CreditcardAuthenticateActivity;
+import com.haoxt.mpos.view.my.MyDebitCardActivity;
+import com.haoxt.mpos.view.my.MyImmediateQuotaActivity;
+import com.haoxt.mpos.view.my.MyPOSApplyActivity;
+import com.haoxt.mpos.view.my.MyPOSInfoActivity;
+import com.haoxt.mpos.view.my.MySettingActivity;
+import com.haoxt.mpos.view.my.MyUserInfoActivity;
+import com.haoxt.mpos.view.my.RealNameAuthenticationActivity;
 
 import tft.mpos.library.base.BaseFragment;
-import tft.mpos.library.ui.AlertDialog;
 import tft.mpos.library.ui.AlertDialog.OnDialogButtonClickListener;
 
 /**设置fragment
