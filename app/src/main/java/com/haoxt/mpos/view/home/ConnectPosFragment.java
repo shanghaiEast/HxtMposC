@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 import com.haoxt.mpos.R;
 import com.haoxt.mpos.activity.PayActivity;
-import com.haoxt.mpos.common.FragmentTag;
 
 import tft.mpos.library.base.BaseFragment;
 
@@ -61,7 +60,6 @@ public class ConnectPosFragment extends BaseFragment implements View.OnClickList
     @Override
     public void initEvent() {
         mBackIv.setOnClickListener(this);
-        mConnectedIv.setOnClickListener(this);
         mPosItemLy.setOnClickListener(this);
     }
 
@@ -73,11 +71,8 @@ public class ConnectPosFragment extends BaseFragment implements View.OnClickList
             case R.id.back_iv:
                 activity.onBackPressed();
                 break;
-            case R.id.connected_iv:
-                showPop();
-                break;
             case R.id.pos_item_ly:
-                activity.replaceFragment(FragmentTag.SWIPE_RESULTS_FRAGMENT);
+                showPop();
                 break;
 
         }
