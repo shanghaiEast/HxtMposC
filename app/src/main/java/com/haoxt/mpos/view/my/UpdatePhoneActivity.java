@@ -1,24 +1,21 @@
-package com.haoxt.mpos.activity.my;
+package com.haoxt.mpos.view.my;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.haoxt.mpos.R;
-import com.haoxt.mpos.activity.SettingActivity;
 
 import tft.mpos.library.base.BaseActivity;
 
-/** 我的设置 Activity
+/** 修改手机号 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class MySettingActivity extends BaseActivity implements OnClickListener {
+public class UpdatePhoneActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -28,7 +25,7 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, MySettingActivity.class);
+		return new Intent(context, UpdatePhoneActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -37,7 +34,7 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_settings);
+		setContentView(R.layout.update_phone);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -50,15 +47,14 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private TextView tv_version,tv_quit;
+	private EditText oldPhone, oldPhoneVerificationCode, newPhone,newPhonVerificationCode;
 	@Override
 	public void initView() {//必须调用
 
-		tv_version = (TextView)findViewById(R.id.tv_version);
-
-//		tv_version.setText("当前版本号：V1.1");
-
-//		tv_version.setText("当前版本号：V" + getVersion());
+		oldPhone = (EditText) findViewById(R.id.et_update_phone_old);
+		oldPhoneVerificationCode = (EditText) findViewById(R.id.et_update_phone_old_verification_code);
+		newPhone = (EditText) findViewById(R.id.et_update_phone_new);
+		newPhonVerificationCode = (EditText) findViewById(R.id.et_update_phone_new_verification_code);
 
 	}
 
@@ -82,17 +78,7 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 	//Data数据区(存在数据获取或处理代码，但不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-	private String getVersion() {
-		try {
-			PackageManager manager = getPackageManager();
-			PackageInfo info = manager.getPackageInfo(getPackageName(), 0);
-			String version = info.versionName;
-			return version;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
-	}
+
 
 
 
@@ -103,8 +89,9 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void initEvent() {//必须调用
 
-		findViewById(R.id.tv_password_management).setOnClickListener(this);
-		findViewById(R.id.tv_update_phone).setOnClickListener(this);
+		findViewById(R.id.bt_update_phone_old_verification_code_button).setOnClickListener(this);
+		findViewById(R.id.bt_update_phone_new_verification_code_button).setOnClickListener(this);
+		findViewById(R.id.btn_update_phone).setOnClickListener(this);
 
 	}
 
@@ -119,12 +106,13 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-			case R.id.tv_password_management:
-				toActivity(ReviseLoginPwdActivity.createIntent(context));
+			case R.id.bt_update_phone_old_verification_code_button:
 				break;
 
-			case R.id.tv_update_phone:
-				toActivity(UpdatePhoneActivity.createIntent(context));
+			case R.id.bt_update_phone_new_verification_code_button:
+				break;
+
+			case R.id.btn_update_phone:
 				break;
 
 			default:

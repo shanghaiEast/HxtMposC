@@ -1,23 +1,23 @@
-package com.haoxt.mpos.activity.my;
+package com.haoxt.mpos.view.my;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.haoxt.mpos.R;
 
 import tft.mpos.library.base.BaseActivity;
 
-/** 实名认证信息 Activity
+/** 实名认证 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class UpdateDebitCardActivity extends BaseActivity implements OnClickListener {
+public class RealNameAuthenticationActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = "SettingActivity";
 
 	//启动方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -27,7 +27,7 @@ public class UpdateDebitCardActivity extends BaseActivity implements OnClickList
 	 * @return
 	 */
 	public static Intent createIntent(Context context) {
-		return new Intent(context, UpdateDebitCardActivity.class);
+		return new Intent(context, RealNameAuthenticationActivity.class);
 	}
 
 	//启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -36,7 +36,7 @@ public class UpdateDebitCardActivity extends BaseActivity implements OnClickList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.update_debit_card);
+		setContentView(R.layout.real_name_authentication);
 
 		//功能归类分区方法，必须调用<<<<<<<<<<
 		initView();
@@ -49,21 +49,29 @@ public class UpdateDebitCardActivity extends BaseActivity implements OnClickList
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	private EditText update_debit_card_number,update_debit_card_open_branch,update_debit_card_open_area,update_debit_card_open_bank;
+	private ImageView cardSide,cardFront ;
+	private EditText tv_name,tv_id,tx_valid;
+	private RadioButton rb1,rb2;
+//	private Button
 
 
 	@Override
 	public void initView() {//必须调用
 
-		update_debit_card_number = (EditText)findViewById(R.id.update_debit_card_number);
-		update_debit_card_open_branch = (EditText)findViewById(R.id.update_debit_card_open_branch);
-		update_debit_card_open_area = (EditText)findViewById(R.id.update_debit_card_open_area);
-		update_debit_card_open_bank = (EditText)findViewById(R.id.update_debit_card_open_bank);
+		tv_name = findView(R.id.real_name_auth_idcard_name);
+		tv_id = findView(R.id.real_name_auth_idcard_number);
 
+		tx_valid = findView(R.id.real_name_auth_idcard_idcard_valid);
+		rb1 = findView(R.id.real_name_auth_idcard_rdb1);
+		rb2 = findView(R.id.real_name_auth_idcard_rdb2);
 	}
 
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
 
 
 
@@ -93,9 +101,9 @@ public class UpdateDebitCardActivity extends BaseActivity implements OnClickList
 	@Override
 	public void initEvent() {//必须调用
 
-		findViewById(R.id.btn_updatedebit_no).setOnClickListener(this);
-		findViewById(R.id.btn_updatedebit_commit).setOnClickListener(this);
-
+		findView(R.id.btn_real_name_auth_id_card_side).setOnClickListener(this);
+		findView(R.id.btn_real_name_auth_id_card_front).setOnClickListener(this);
+		findView(R.id.btn_real_name_authentication_upload).setOnClickListener(this);
 	}
 
 
@@ -109,18 +117,15 @@ public class UpdateDebitCardActivity extends BaseActivity implements OnClickList
 	public void onClick(View view) {
 
 		switch (view.getId()) {
-			case R.id.btn_updatedebit_no:
-//				Intent intent = new Intent(context, RealNameAuthResultActivity.class);
-//				intent.putExtra("activityfrom", "realnameinfo");
-//				toActivity(intent);
+			case R.id.btn_real_name_auth_id_card_side:
+//				showShortToast("onClick  ivSettingHead");
 				break;
-
-			case R.id.btn_updatedebit_commit:
-//				Intent intent = new Intent(context, RealNameAuthResultActivity.class);
-//				intent.putExtra("activityfrom", "realnameinfo");
-//				toActivity(intent);
+			case R.id.btn_real_name_auth_id_card_front:
+//				toActivity(SettingActivity.createIntent(context));
 				break;
-
+			case R.id.btn_real_name_authentication_upload:
+				toActivity(MyBankCardAddActivity.createIntent(context));
+				break;
 			default:
 				break;
 		}
