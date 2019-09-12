@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/activity_page" >
+    style="@style/activity_page">
 
     <RelativeLayout style="@style/topbar_bg"
+        android:background="#EF5F48"
         android:id="@+id/titlebar_mypos_info">
 
         <ImageButton style="@style/topbar_return_img" />
 
         <TextView
             style="@style/topbar_title"
+            android:textColor="@color/white"
             android:layout_centerHorizontal="true"
             android:text="商户信息" />
 

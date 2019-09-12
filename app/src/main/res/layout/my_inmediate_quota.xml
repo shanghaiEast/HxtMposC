@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_bg_layout"
+    style="@style/activity_page"
     android:orientation="vertical">
 
     <RelativeLayout style="@style/topbar_bg"
         android:id="@+id/titlebar_realname_result">
 
-        <ImageButton style="@style/topbar_return_img" />
+        <ImageButton style="@style/topbar_return_img1" />
 
         <TextView
             style="@style/topbar_title"

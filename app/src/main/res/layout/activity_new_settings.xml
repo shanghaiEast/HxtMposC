@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/panel_bg"
+    style="@style/activity_page"
     android:orientation="vertical">
 
     <RelativeLayout style="@style/topbar_bg"
         android:id="@+id/titlebar_my_setting"
         >
 
-        <ImageButton style="@style/topbar_return_img" />
+        <ImageButton style="@style/topbar_return_img1" />
 
         <TextView
             style="@style/topbar_title"
@@ -41,13 +42,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="13dp"
                     android:paddingLeft="15dp"
                     android:text="修改密码" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginRight="13dp"
                     android:background="@color/bg" />
 
                 <TextView
@@ -62,7 +67,10 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginRight="13dp"
                     android:background="@color/bg" />
 
                 <RelativeLayout
@@ -89,6 +97,14 @@
                         android:visibility="visible" />
 
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="13dp"
+                    android:background="@color/bg" />
 
             </LinearLayout>
 
