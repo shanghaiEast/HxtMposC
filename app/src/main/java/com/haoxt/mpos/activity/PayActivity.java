@@ -95,7 +95,7 @@ public class PayActivity extends BaseActivity {
 
         //addToBackStack:把fragment加入到栈结构.
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).addToBackStack(fragmentTag).commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).commitAllowingStateLoss();
         }
     }
 }

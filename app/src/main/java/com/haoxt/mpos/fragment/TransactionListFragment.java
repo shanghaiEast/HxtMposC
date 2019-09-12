@@ -15,6 +15,7 @@ import com.haoxt.mpos.activity.TransactionActivity;
 import com.haoxt.mpos.adapter.TransactionListAdapter;
 import com.haoxt.mpos.common.PayType;
 import com.haoxt.mpos.entity.ListTransaction;
+import com.haoxt.mpos.view.transaction.SelectTimePopup;
 import com.haoxt.mpos.widget.MyDialog;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class TransactionListFragment extends BaseFragment implements View.OnClic
     private ArrayList<ListTransaction> mList;
     private TextView mNoDataTv;
     private MyDialog mConditionPopup;
-    private MyDialog mTimePopup;
+    private SelectTimePopup mTimePopup;
 
     //单例
     public static TransactionListFragment newInstance() {
@@ -159,19 +160,10 @@ public class TransactionListFragment extends BaseFragment implements View.OnClic
     }
 
     private void showTimePopup() {
-        if (mTimePopup == null)
-            mTimePopup = new MyDialog(getActivity());
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.popup_time, null);
-        TextView cancelTv = layout.findViewById(R.id.cancel_tv);
-        cancelTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mTimePopup.dismiss();
-            }
-        });
+        if (mTimePopup != null) {
+            mTimePopup = null;
+        }
+        mTimePopup = new SelectTimePopup(getActivity());
         mTimePopup.show();
-        mTimePopup.setCancelable(false);
-        mTimePopup.setContentView(layout);
     }
 }

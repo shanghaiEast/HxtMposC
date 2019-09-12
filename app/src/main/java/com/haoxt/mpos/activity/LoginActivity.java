@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
 
 import com.haoxt.mpos.R;
 import com.haoxt.mpos.application.AppApplication;
@@ -17,9 +13,6 @@ import com.haoxt.mpos.fragment.LoginFragment;
 import com.haoxt.mpos.fragment.RegisterFragment;
 
 import tft.mpos.library.base.BaseActivity;
-import tft.mpos.library.interfaces.OnBottomDragListener;
-import tft.mpos.library.util.Log;
-import tft.mpos.library.util.SettingUtil;
 
 /**
  * 登录界面Activity
@@ -92,7 +85,7 @@ public class LoginActivity extends BaseActivity {
 
         //addToBackStack:把fragment加入到栈结构.
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).addToBackStack(fragmentTag).commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_content, fragment).addToBackStack(null).commitAllowingStateLoss();
         }
     }
 

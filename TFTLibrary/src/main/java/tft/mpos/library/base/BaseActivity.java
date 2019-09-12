@@ -761,7 +761,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
     //修改点击back键事件
     @Override
     public void onBackPressed() {
-        if (fragmentManager.getFragments().size() > 1) {
+        if (fragmentManager.getBackStackEntryCount() > 1) {
             super.onBackPressed();
         } else {
             this.finish();
