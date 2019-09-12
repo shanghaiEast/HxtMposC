@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg_layout"
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/topbar_bg"
+        android:id="@+id/titlebar_realname_result">
+
+        <ImageButton style="@style/topbar_return_img" />
+
+        <TextView
+            style="@style/topbar_title"
+            android:layout_centerHorizontal="true"
+            android:text="我的即时额度" />
+
+    </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/my_inmediate_ll_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="156dp"
+                android:background="@drawable/my_inmediate_quota_header_backgroud"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:padding="17dp"
+
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/rmb_logo" />
+
+                    <TextView
+                        android:id="@+id/my_inmediate_quota_amount"
+                        android:layout_width="112dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="9dp"
+                        android:text="34,345.36"
+                        android:textColor="@color/black"
+                        android:textSize="27sp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="26dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/day_quota_background"
+                    android:gravity="center"
+                    android:text="单日剩余额度"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的额度"
+                android:layout_marginTop="36dp"
+                android:layout_marginLeft="9dp"
+                android:textColor="@color/black"
+                android:textSize="27sp" />
+
+            <ListView
+                android:id="@+id/my_inmediate_quota_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:divider="@color/color_bg_layout"
+                android:dividerHeight="10dp"
+                android:minHeight="100dp"
+                android:scrollbars="none" />
+
+            <!--<Button-->
+                <!--android:id="@+id/tv_bank_authenticate"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="36dp"-->
+                <!--android:layout_marginLeft="24dp"-->
+                <!--android:layout_marginRight="24dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--style="@style/btn_next_style_red"-->
+                <!--android:text="认证提额"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="15sp" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_bank_authenticate"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="45dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:drawableLeft="@drawable/add2x"-->
+                <!--android:drawablePadding="15dp"-->
+                <!--android:drawableRight="@drawable/right32"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="15dp"-->
+                <!--android:text="添加信用卡"-->
+                <!--android:textColor="@color/color_508FF7"-->
+                <!--android:textSize="15sp"-->
+                <!--android:visibility="visible" />-->
+
+        </LinearLayout>
+
+
+</LinearLayout>

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="btn_white_nomal_style">
+        <item name="android:background">@drawable/selector_btn_white</item>
+        <item name="android:height">45dp</item>
+    </style>
+
+    <string name="bind_terminal">1. 请检查您的终端设备电源是否开启；\n2. 请尝试重启终端设备后，重新搜索；\n3. 若多次尝试仍未搜索到，请尝试重启手机蓝牙；\n4. 如仍未搜索到，请联系服务商或在线客服</string>
+    <string name="search">搜索</string>
+    <string name="open_camera_permission">无法获取摄像头权限，请检查是否已经打开摄像头权限</string>
+
 </resources>

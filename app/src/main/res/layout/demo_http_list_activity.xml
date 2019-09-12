@@ -11,7 +11,7 @@
         <TextView
             style="@style/topbar_title"
             android:layout_centerHorizontal="true"
-            android:text="HttpList" />
+            android:text="我的结算卡" />
 
     </RelativeLayout>
 
@@ -39,5 +39,22 @@
             style="@style/match_wrap"
             />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_marginTop="24dp">-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_update_phone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/selector_btn_red"-->
+            <!--android:text="确定"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="15sp" />-->
+
+    <!--</LinearLayout>-->
 
 </LinearLayout>

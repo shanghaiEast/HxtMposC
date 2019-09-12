@@ -3,6 +3,7 @@
     package="com.haoxt.mpos"
     android:versionCode="30"
     android:versionName="@string/app_version">
+
     <!-- 需要的权限和功能 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -71,12 +72,11 @@
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".DEMO.DemoThreadPoolActivity"></activity>
-        <!--<activity-->
-            <!--android:name=".activity.MainTabActivity"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:screenOrientation="portrait" />-->
+        <activity android:name=".DEMO.DemoThreadPoolActivity" />
+        <!-- <activity -->
+        <!-- android:name=".activity.MainTabActivity" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:screenOrientation="portrait" /> -->
         <activity
             android:name=".activity.SettingActivity"
             android:screenOrientation="portrait"
@@ -92,58 +92,100 @@
         <activity
             android:name=".activity.QRCodeActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Demo <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <!-- view <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
         <activity
-            android:name=".DEMO.DemoMainActivity"
+            android:name=".activity.home.DeviceBindActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoActivity"
+            android:name=".activity.my.CreditcardAuthenticateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoListActivity"
+            android:name=".activity.my.CreditcardVerifedActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoRecyclerActivity"
+            android:name=".activity.my.MerchantInfoAuthActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoHttpListActivity"
+            android:name=".activity.my.MyBankCardAddActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoHttpRecyclerActivity"
+            android:name=".activity.my.MyDebitCardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoFragmentActivity"
-            android:launchMode="singleTop"
+            android:name=".activity.my.MyImmediateQuotaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoTabActivity"
+            android:name=".activity.my.MyPOSApplyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoSQLActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|adjustUnspecified" />
-        <activity
-            android:name=".DEMO.DemoTimeRefresherActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|adjustUnspecified" />
-        <activity
-            android:name=".DEMO.DemoBroadcastReceiverActivity"
+            android:name=".activity.my.MyPOSInfoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
-            android:name=".DEMO.DemoBottomWindow"
+            android:name=".activity.my.MySettingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Window"
-            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- Demo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
-        <!-- ZBLibrary <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.MyUserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.RealNameAuthenticationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.RealNameAuthResultActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.RealNameInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.ReviseLoginPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.UpdatePhoneActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activity.my.UpdateDebitCardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+
+        <!-- view >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+
+        <!-- TFTLibrary <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
         <activity
             android:name="tft.mpos.library.ui.SelectPictureActivity"
             android:screenOrientation="portrait"

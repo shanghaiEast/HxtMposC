@@ -2,5 +2,7 @@
 <resources>
 
     <dimen name="qrcode_size">200dp</dimen>
+    <dimen name="button_radius">5dp</dimen>
+    <dimen name="button_border_width">0.5dp</dimen>
 
 </resources>
