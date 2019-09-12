@@ -112,6 +112,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_1"
             android:background="@color/color_line_bg" />
+
+        <DatePicker
+            android:id="@+id/date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:calendarViewShown="false"
+            android:spinnersShown="true"
+            android:theme="@android:style/Theme.Holo.Light" />
     </LinearLayout>
 
 </LinearLayout>

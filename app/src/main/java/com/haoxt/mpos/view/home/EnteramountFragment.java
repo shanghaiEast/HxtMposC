@@ -90,15 +90,12 @@ public class EnteramountFragment extends BaseFragment implements View.OnClickLis
             case R.id.back_iv:
                 getActivity().onBackPressed();
                 break;
-            case R.id.bank_card_tv:
-                showPop();
-                break;
             case R.id.pay_bt:
                 PayActivity activity = (PayActivity) getActivity();
                 if (activity.getPayType() == PayType.ALI_PAY || activity.getPayType() == PayType.WE_CHAT)
                     activity.replaceFragment(FragmentTag.THINK_CHANGE_FRAGMENT);
                 else
-                    activity.replaceFragment(FragmentTag.CONNECT_POS_FRAGMENT);
+                    showPop();
                 break;
             case R.id.card_payment_bt:
                 dismissPop();
@@ -111,8 +108,10 @@ public class EnteramountFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void showPop() {
-        if (mDialog == null)
-            mDialog = new MyDialog(getActivity());
+        if (mDialog != null) {
+            mDialog = null;
+        }
+        mDialog = new MyDialog(getActivity());
         LayoutInflater inflater = getLayoutInflater();
         RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.popup, null);
 
@@ -128,6 +127,7 @@ public class EnteramountFragment extends BaseFragment implements View.OnClickLis
     private void dismissPop() {
         if (mDialog != null && mDialog.isShowing()) {
             mDialog.cancel();
+            mDialog = null;
         }
     }
 

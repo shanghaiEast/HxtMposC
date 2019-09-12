@@ -163,7 +163,13 @@ public class TransactionListFragment extends BaseFragment implements View.OnClic
             mTimePopup = new MyDialog(getActivity());
         LayoutInflater inflater = getLayoutInflater();
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.popup_time, null);
-
+        TextView cancelTv = layout.findViewById(R.id.cancel_tv);
+        cancelTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTimePopup.dismiss();
+            }
+        });
         mTimePopup.show();
         mTimePopup.setCancelable(false);
         mTimePopup.setContentView(layout);

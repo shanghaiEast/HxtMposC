@@ -96,4 +96,5 @@
     <integer name="int_3">3</integer>
     <integer name="int_4">4</integer>
     <integer name="int_5">5</integer>
+    <integer name="int_6">6</integer>
 </resources>

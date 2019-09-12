@@ -15,10 +15,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="479dp"
         android:layout_marginHorizontal="@dimen/dimen_14"
         android:layout_marginTop="@dimen/dimen_135"
-        android:layout_marginBottom="@dimen/dimen_198"
         android:background="@drawable/think_change_fragment_bg"
         android:orientation="vertical">
 
