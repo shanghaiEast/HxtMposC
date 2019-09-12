@@ -4,14 +4,18 @@
     android:layout_height="match_parent"
     android:background="@color/button_normal">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_72"
+        android:layout_marginBottom="@dimen/dimen_65"
+        android:paddingTop="@dimen/dimen_16">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="888dp"
             android:layout_marginHorizontal="@dimen/dimen_16"
-            android:layout_marginTop="@dimen/dimen_72"
-            android:layout_marginBottom="@dimen/dimen_65"
-            android:background="@mipmap/slip_bg"
-            android:paddingTop="@dimen/dimen_16">
+            android:background="@mipmap/slip_bg">
 
             <ImageView
                 android:layout_width="@dimen/dimen_22"
@@ -339,4 +343,5 @@
                     android:textSize="@dimen/font_20" />
             </LinearLayout>
         </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

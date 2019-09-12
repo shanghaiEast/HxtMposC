@@ -91,15 +91,15 @@ public class EnteramountFragment extends BaseFragment implements View.OnClickLis
                 getActivity().onBackPressed();
                 break;
             case R.id.pay_bt:
+                showPop();
+                break;
+            case R.id.card_payment_bt:
+                dismissPop();
                 PayActivity activity = (PayActivity) getActivity();
                 if (activity.getPayType() == PayType.ALI_PAY || activity.getPayType() == PayType.WE_CHAT)
                     activity.replaceFragment(FragmentTag.THINK_CHANGE_FRAGMENT);
                 else
-                    showPop();
-                break;
-            case R.id.card_payment_bt:
-                dismissPop();
-                ((PayActivity) getActivity()).replaceFragment(FragmentTag.CONNECT_POS_FRAGMENT);
+                    activity.replaceFragment(FragmentTag.CONNECT_POS_FRAGMENT);
                 break;
             case R.id.cancel_tv:
                 dismissPop();

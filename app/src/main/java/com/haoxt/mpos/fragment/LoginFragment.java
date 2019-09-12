@@ -3,7 +3,6 @@ package com.haoxt.mpos.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
+import com.haoxt.mpos.activity.LoginActivity;
 import com.haoxt.mpos.activity.MainTabActivity;
 import com.haoxt.mpos.application.AppApplication;
+import com.haoxt.mpos.common.FragmentTag;
 
 import tft.mpos.library.base.BaseFragment;
 
@@ -81,14 +82,16 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        LoginActivity loginActivity = ((LoginActivity) getActivity());
         switch (view.getId()) {
             case R.id.forget_tv:
-
+                loginActivity.replaceFragment(FragmentTag.FORGET_PASSWORD_FRAGMENT);
                 break;
             case R.id.login_bt:
                 login();
                 break;
             case R.id.register_tv:
+                loginActivity.replaceFragment(FragmentTag.REGISTER_FRAGMENT);
                 break;
         }
     }
