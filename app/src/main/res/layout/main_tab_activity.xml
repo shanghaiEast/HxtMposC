@@ -22,7 +22,7 @@
         android:layout_weight="1" >
     </FrameLayout>
 
-    <View style="@style/divider_horizontal_1px_gray" />
+    <!--<View style="@style/divider_horizontal_1px_gray" />-->
 
     <LinearLayout
         style="@style/ll_horizontal_match_wrap"

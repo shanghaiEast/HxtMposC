@@ -34,8 +34,6 @@
 
 <color name="warning_stroke_color">#F8BB86</color>
 
-<color name="text_color">#575757</color>
-
 <color name="material_blue_grey_80">#ff37474f</color>
 
 <color name="material_blue_grey_90">#ff263238</color>
@@ -98,7 +96,6 @@
     <color name="color_bg_layout">#f5f5f5</color>
     <color name="color_more_line_gray">#D8D0C8</color>
     <color name="background_tab_pressed">#6633B5E5</color>
-    <color name="color_line">#c2c2c2</color>
     <color name="selector_layout">#ffffff</color>
 
     <drawable name="btn_nor">#ff434343</drawable>
@@ -245,4 +242,30 @@
     <color name="color_76798a">#76798A</color>
     <color name="color_54270A">#54270A</color>
     <color name="color_FFE5BF">#FFE5BF</color>
+    <color name="text_color">#333333</color>
+    <color name="sale_time_text_color">#999999</color>
+    <color name="announcement_text_color">#444444</color>
+    <color name="et_line_color">#B3B9C5</color>
+    <color name="button_normal">#FE4049</color>
+    <color name="button_pressed">#4DFE4049</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_70white">#B3FFFFFF</color>
+    <color name="color_55black">#8C333333</color>
+    <color name="no_data_color">#AFAFAF</color>
+    <color name="message_bg_color">#FEF0EA</color>
+    <color name="message_text_color">#F27941</color>
+    <color name="color_F9F9F9">#F9F9F9</color>
+    <color name="color_A6black">#A6000000</color>
+    <color name="color_line_bg">#979797</color>
+    <color name="color_title_bg">#F1F1F1</color>
+    <color name="color_key_text">#7B7B7B</color>
+    <color name="color_money_text">#FF0700</color>
+    <color name="color_succeed_text">#888888</color>
+    <color name="color_line">#EEEEEE</color>
+    <color name="color_F5">#F5F5F5</color>
+    <color name="color_think_money">#828282</color>
+    <color name="color_screen_text">#666666</color>
+    <color name="color_screen_box_text">#555555</color>
+    <color name="color_c1white">#C1C1C1</color>
+    <color name="color_black">#000000</color>
 </resources>
