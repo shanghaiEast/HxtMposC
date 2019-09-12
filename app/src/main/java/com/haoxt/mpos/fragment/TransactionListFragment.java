@@ -29,13 +29,13 @@ import tft.mpos.library.base.BaseFragment;
  * Version:     V1.0.0<br>
  * Update:     <br>
  */
-public class TransactionListFragment extends BaseFragment implements View.OnClickListener, TransactionListAdapter.OnItemClickListener {
+public class TransactionListFragment extends BaseFragment implements View.OnClickListener, TransactionListAdapter.OnItemClickListener, SelectTimePopup.OnConfirmTimeListener {
 
     private LinearLayout mTimeScreenLy;
     private TextView mConditionScreenTv;
     private RecyclerView mSaleList;
     private ArrayList<ListTransaction> mList;
-    private TextView mNoDataTv;
+    private TextView mNoDataTv, mStartTv, mEndTv;
     private MyDialog mConditionPopup;
     private SelectTimePopup mTimePopup;
 
@@ -67,6 +67,8 @@ public class TransactionListFragment extends BaseFragment implements View.OnClic
     public void initView() {
         mTimeScreenLy = view.findViewById(R.id.time_screen_ly);
         mConditionScreenTv = view.findViewById(R.id.condition_screen_tv);
+        mStartTv = view.findViewById(R.id.start_tv);
+        mEndTv = view.findViewById(R.id.end_tv);
         mNoDataTv = view.findViewById(R.id.no_data_tv);
         mSaleList = view.findViewById(R.id.sale_list);
         mSaleList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -164,6 +166,14 @@ public class TransactionListFragment extends BaseFragment implements View.OnClic
             mTimePopup = null;
         }
         mTimePopup = new SelectTimePopup(getActivity());
+        mTimePopup.setOnConfirmTimeListener(this);
         mTimePopup.show();
+    }
+
+
+    @Override
+    public void onConfirmTime(String startTime, String endTime) {
+        mStartTv.setText(startTime);
+        mEndTv.setText(endTime);
     }
 }

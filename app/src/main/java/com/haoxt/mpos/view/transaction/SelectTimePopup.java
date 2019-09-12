@@ -17,6 +17,7 @@ public class SelectTimePopup extends MyDialog implements View.OnClickListener {
     private LinearLayout mLayout;
     private boolean isSetEnd;
     private TextView mStartTv, mEndTv;
+    private OnConfirmTimeListener mOnConfirmTimeListener;
 
     public SelectTimePopup(Activity activity) {
         super(activity);
@@ -29,6 +30,7 @@ public class SelectTimePopup extends MyDialog implements View.OnClickListener {
         LayoutInflater inflater = getLayoutInflater();
         mLayout = (LinearLayout) inflater.inflate(R.layout.popup_time, null);
         TextView cancelTv = mLayout.findViewById(R.id.cancel_tv);
+        TextView confirmTv = mLayout.findViewById(R.id.confirm_tv);
         mStartTv = mLayout.findViewById(R.id.start_tv);
         mEndTv = mLayout.findViewById(R.id.end_tv);
         setTextView();
@@ -39,6 +41,7 @@ public class SelectTimePopup extends MyDialog implements View.OnClickListener {
         mStartTv.setOnClickListener(this);
         mEndTv.setOnClickListener(this);
         cancelTv.setOnClickListener(this);
+        confirmTv.setOnClickListener(this);
     }
 
     private void setTextView() {
@@ -62,9 +65,16 @@ public class SelectTimePopup extends MyDialog implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.close_tv:
+            case R.id.cancel_tv:
                 if (isShowing())
                     dismiss();
+                break;
+            case R.id.confirm_tv:
+                if (isShowing())
+                    dismiss();
+                if (mOnConfirmTimeListener != null) {
+                    mOnConfirmTimeListener.onConfirmTime(mStartTv.getText().toString(), mEndTv.getText().toString());
+                }
                 break;
             case R.id.start_tv:
                 isSetEnd = false;
@@ -85,4 +95,13 @@ public class SelectTimePopup extends MyDialog implements View.OnClickListener {
         this.setCancelable(false);
         this.setContentView(mLayout);
     }
+
+    public interface OnConfirmTimeListener {
+        void onConfirmTime(String startTime, String endTime);
+    }
+
+    public void setOnConfirmTimeListener(OnConfirmTimeListener listener) {
+        mOnConfirmTimeListener = listener;
+    }
+
 }

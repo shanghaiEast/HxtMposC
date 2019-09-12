@@ -30,7 +30,6 @@
         android:layout_marginLeft="@dimen/dimen_18"
         android:layout_marginTop="@dimen/dimen_16"
         android:background="@drawable/select_time_bg"
-        android:onClick="@{transactionViewModel::click}"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/dimen_9">
 
