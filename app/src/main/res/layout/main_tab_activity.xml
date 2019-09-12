@@ -26,8 +26,9 @@
 
     <LinearLayout
         style="@style/ll_horizontal_match_wrap"
+        android:paddingTop="5dp"
         android:layout_height="@dimen/topbar_height"
-        android:background="@color/alpha_6" >
+        android:background="@color/white" >
 
         <LinearLayout
             android:id="@+id/llBottomTabTab0"
