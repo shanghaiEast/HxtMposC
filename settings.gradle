@@ -1,1 +1,1 @@
-include ':app', ':TFTLibrary', ':QRCodeLibrary'
+include ':app', ':TFTLibrary', ':QRCodeLibrary', ':sdkproject'

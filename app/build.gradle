@@ -33,4 +33,5 @@ dependencies {
     implementation files('libs/TYMPosLib_V1.00.00.R6750.jar')
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.google.code.gson:gson-parent:2.8.5'
+    implementation project(':sdkproject')
 }
