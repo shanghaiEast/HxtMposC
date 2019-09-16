@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
+import com.haoxt.mpos.view.home.DeviceBindActivity;
 import com.haoxt.mpos.view.my.CreditcardAuthenticateActivity;
 import com.haoxt.mpos.view.my.MyDebitCardActivity;
 import com.haoxt.mpos.view.my.MyImmediateQuotaActivity;
@@ -190,6 +191,7 @@ public class SettingFragment extends BaseFragment implements OnClickListener, On
 				toActivity(MyPOSApplyActivity.createIntent(context));
 				break;
 			case R.id.llCustomerServiceOnline:
+				toActivity(DeviceBindActivity.createIntent(context));
 				break;
 
 			case R.id.llMyHelp:
