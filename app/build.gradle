@@ -30,4 +30,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     api project(':QRCodeLibrary')
     api project(':TFTLibrary')
+    implementation project(':sdkproject')
 }
