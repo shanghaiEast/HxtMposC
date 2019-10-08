@@ -2,7 +2,6 @@ package com.haoxt.mpos.manager;
 
 import org.json.JSONObject;
 
-import com.haoxt.mpos.activity.UserActivity;
 import com.haoxt.mpos.interfaces.OnHttpResponseListener;
 import tft.mpos.library.util.Log;
 import tft.mpos.library.util.StringUtil;
@@ -17,7 +16,6 @@ import tft.mpos.library.util.StringUtil;
    <br>      }
    <br>   }
  * @author baowen
- * @see UserActivity#initData()
  * @use 把请求中的listener替换成new OnHttpResponseListenerImpl(listener)
  */
 public class OnHttpResponseListenerImpl implements OnHttpResponseListener

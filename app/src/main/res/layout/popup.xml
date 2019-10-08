@@ -19,7 +19,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="212dp"
+        android:layout_height="172dp"
         android:layout_above="@+id/card_payment_bt"
         android:background="@drawable/pay_pop_bg"
         android:paddingTop="@dimen/dimen_18">
@@ -42,46 +42,19 @@
             android:textColor="@color/text_color"
             android:textSize="@dimen/font_17" />
 
+
         <View
+            android:id="@+id/pop_line"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_1"
             android:layout_below="@+id/title_tv"
-            android:layout_marginTop="@dimen/dimen_15"
-            android:background="@color/color_line_bg" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_tv"
-            android:layout_marginTop="@dimen/dimen_32"
-            android:paddingLeft="@dimen/dimen_21"
-            android:text="@string/order_number"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/font_17" />
-
-        <TextView
-            android:id="@+id/order_number_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_tv"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dimen_32"
-            android:layout_marginRight="@dimen/dimen_21"
-            android:text="35363534242"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/font_17" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_1"
-            android:layout_below="@+id/order_number_tv"
             android:layout_marginTop="@dimen/dimen_11"
             android:background="@color/color_line_bg" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/order_number_tv"
+            android:layout_below="@+id/pop_line"
             android:layout_marginTop="@dimen/dimen_24"
             android:paddingLeft="@dimen/dimen_21"
             android:text="@string/product_name"
@@ -92,7 +65,7 @@
             android:id="@+id/product_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/order_number_tv"
+            android:layout_below="@+id/pop_line"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/dimen_24"
             android:layout_marginRight="@dimen/dimen_47"

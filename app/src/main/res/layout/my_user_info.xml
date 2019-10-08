@@ -6,7 +6,8 @@
         android:background="#EF5F48"
         android:id="@+id/titlebar_mypos_info">
 
-        <ImageButton style="@style/topbar_return_img" />
+        <ImageButton style="@style/topbar_return_img"
+            android:onClick="onReturnClick"/>
 
         <TextView
             style="@style/topbar_title"

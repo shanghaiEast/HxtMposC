@@ -182,6 +182,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/sales_slip_device_sn"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -191,6 +192,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_merchant_name"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -200,6 +202,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_merchant_number"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -209,6 +212,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_acquiring_bank"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -218,6 +222,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_term_validity"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -227,6 +232,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_card_organization"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -236,6 +242,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_issuing_bank"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -245,6 +252,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_card_type"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -254,6 +262,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_card_no"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -263,6 +272,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_transation_type"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -272,6 +282,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_transation_time"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -281,6 +292,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_search_number"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -290,6 +302,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
+                    android:id="@+id/sales_slip_search_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_2"
@@ -322,7 +335,8 @@
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/font_14" />
 
-                <View
+                <ImageView
+                    android:id="@+id/salaspurchase_purchase_img"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_marginTop="@dimen/dimen_8"

@@ -33,17 +33,17 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="18dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
-                android:background="@drawable/authenticate_progress_card"
-                />
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="18dp"-->
+                <!--android:layout_marginLeft="13dp"-->
+                <!--android:layout_marginRight="13dp"-->
+                <!--android:background="@drawable/authenticate_progress_card"-->
+                <!--/>-->
 
-            <View style="@style/divider_horizontal_item_line" />
+            <!--<View style="@style/divider_horizontal_item_line" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -249,20 +249,30 @@
                     android:layout_weight="1"
                     />
 
-                <RadioButton
-                    android:id="@+id/real_name_auth_idcard_rdb1"
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/color_FE4049"
-                    android:checked="true"
-                    android:text="是"/>
+                    android:layout_height="wrap_content" >
 
-                <RadioButton
-                    android:id="@+id/real_name_auth_idcard_rdb2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/color_FE4049"
-                    android:text="否"/>
+                    <RadioButton
+                        android:id="@+id/real_name_auth_idcard_rdb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/color_FE4049"
+                        android:checked="true"
+                        android:text="是"/>
+
+                    <RadioButton
+                        android:id="@+id/real_name_auth_idcard_rdb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/color_FE4049"
+                        android:text="否"/>
+
+
+                </RadioGroup>
+
 
 
                 <!--<EditText-->

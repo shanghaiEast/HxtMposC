@@ -1,50 +1,71 @@
 package com.haoxt.mpos.entity;
 
-public class ListTransaction {
+import java.io.Serializable;
 
-    public int payType;
-    public int payResult;
-    public String payMoney;
-    public String payTime;
-    public String payNum;
+public class ListTransaction  implements Serializable{
 
-    public int getPayType() {
-        return payType;
+    public String LOG_NO;
+    public String CRD_NO;
+    public String TXN_AMT;
+    public String TXN_STS_ZH;
+    public String TXN_TM;
+    public String MERC_FEE_AMT;
+    public String TXN_CD;
+
+
+    public String getLOG_NO() {
+        return LOG_NO;
     }
 
-    public void setPayType(int payType) {
-        this.payType = payType;
+    public void setLOG_NO(String LOG_NO) {
+        this.LOG_NO = LOG_NO;
     }
 
-    public int getPayResult() {
-        return payResult;
+    public String getCRD_NO() {
+        return CRD_NO;
     }
 
-    public void setPayResult(int payResult) {
-        this.payResult = payResult;
+    public void setCRD_NO(String CRD_NO) {
+        this.CRD_NO = CRD_NO;
     }
 
-    public String getPayMoney() {
-        return payMoney;
+    public String getTXN_AMT() {
+        return TXN_AMT;
     }
 
-    public void setPayMoney(String payMoney) {
-        this.payMoney = payMoney;
+    public void setTXN_AMT(String TXN_AMT) {
+        this.TXN_AMT = TXN_AMT;
     }
 
-    public String getPayTime() {
-        return payTime;
+    public String getTXN_STS_ZH() {
+        return TXN_STS_ZH;
     }
 
-    public void setPayTime(String payTime) {
-        this.payTime = payTime;
+    public void setTXN_STS_ZH(String TXN_STS_ZH) {
+        this.TXN_STS_ZH = TXN_STS_ZH;
     }
 
-    public String getPayNum() {
-        return payNum;
+    public String getTXN_TM() {
+        return TXN_TM;
     }
 
-    public void setPayNum(String payNum) {
-        this.payNum = payNum;
+    public void setTXN_TM(String TXN_TM) {
+        this.TXN_TM = TXN_TM;
+    }
+
+    public String getMERC_FEE_AMT() {
+        return MERC_FEE_AMT;
+    }
+
+    public void setMERC_FEE_AMT(String MERC_FEE_AMT) {
+        this.MERC_FEE_AMT = MERC_FEE_AMT;
+    }
+
+    public String getTXN_CD() {
+        return TXN_CD;
+    }
+
+    public void setTXN_CD(String TXN_CD) {
+        this.TXN_CD = TXN_CD;
     }
 }

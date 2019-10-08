@@ -29,8 +29,8 @@
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/font_20" />
 
-            <TextView
-                android:id="@+id/close_tv"
+            <Button
+                android:id="@+id/btn_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -47,13 +47,23 @@
             android:layout_height="@dimen/dimen_0"
             android:layout_weight="@integer/int_1" />
 
+        <com.haoxt.mpos.signture.SignaturePad
+            android:id="@+id/signature_pad"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="8"
+            android:background="@drawable/shape_rectangle_graybg_normal" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_48"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/rewrite_tv"
+            <Button
+                android:id="@+id/btn_rewrite"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/dimen_1"
@@ -64,8 +74,8 @@
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/font_16" />
 
-            <TextView
-                android:id="@+id/confirm_tv"
+            <Button
+                android:id="@+id/btn_confirm"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="match_parent"
                 android:layout_weight="@integer/int_1"

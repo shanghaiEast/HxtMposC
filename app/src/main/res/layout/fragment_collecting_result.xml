@@ -24,6 +24,7 @@
             android:id="@+id/card_pay_ly"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <ImageView
@@ -70,6 +71,7 @@
             android:id="@+id/qr_pay_ly"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <ImageView

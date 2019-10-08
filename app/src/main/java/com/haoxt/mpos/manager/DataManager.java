@@ -20,16 +20,16 @@ public class DataManager {
 	}
 
 	private static DataManager instance;
-	public static DataManager getInstance() {
-		if (instance == null) {
-			synchronized (DataManager.class) {
-				if (instance == null) {
-					instance = new DataManager(AppApplication.getInstance());
-				}
-			}
-		}
-		return instance;
-	}
+    public static DataManager getInstance() {
+        if (instance == null) {
+            synchronized (DataManager.class) {
+                if (instance == null) {
+                    instance = new DataManager(AppApplication.getInstance());
+                }
+            }
+        }
+        return instance;
+    }
 
 	//用户 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -39,13 +39,13 @@ public class DataManager {
 	public final String KEY_USER_ID = "KEY_USER_ID";
 	public final String KEY_USER_NAME = "KEY_USER_NAME";
 	public final String KEY_USER_PHONE = "KEY_USER_PHONE";
+	public final String KEY_USER_TOKEN = "KEY_USER_TOKEN";
 
 	public final String KEY_CURRENT_USER_ID = "KEY_CURRENT_USER_ID";
 	public final String KEY_LAST_USER_ID = "KEY_LAST_USER_ID";
 
 
 	/**判断是否为当前用户
-	 * @param context
 	 * @param userId
 	 * @return
 	 */
@@ -54,7 +54,6 @@ public class DataManager {
 	}
 
 	/**获取当前用户id
-	 * @param context
 	 * @return
 	 */
 	public long getCurrentUserId() {
@@ -63,7 +62,6 @@ public class DataManager {
 	}
 
 	/**获取当前用户的手机号
-	 * @param context
 	 * @return
 	 */
 	public String getCurrentUserPhone() {
@@ -71,7 +69,6 @@ public class DataManager {
 		return user == null ? "" : user.getPhone();
 	}
 	/**获取当前用户
-	 * @param context
 	 * @return
 	 */
 	public User getCurrentUser() {
@@ -81,7 +78,6 @@ public class DataManager {
 
 
 	/**获取最后一次登录的用户的手机号
-	 * @param context
 	 * @return
 	 */
 	public String getLastUserPhone() {
@@ -90,7 +86,6 @@ public class DataManager {
 	}
 
 	/**获取最后一次登录的用户
-	 * @param context
 	 * @return
 	 */
 	public User getLastUser() {
@@ -99,7 +94,6 @@ public class DataManager {
 	}
 
 	/**获取用户
-	 * @param context
 	 * @param userId
 	 * @return
 	 */
@@ -115,7 +109,6 @@ public class DataManager {
 
 
 	/**保存当前用户,只在登录或注销时调用
-	 * @param context
 	 * @param user  user == null >> user = new User();
 	 */
 	public void saveCurrentUser(User user) {
@@ -137,14 +130,12 @@ public class DataManager {
 	}
 
 	/**保存用户
-	 * @param context
 	 * @param user
 	 */
 	public void saveUser(User user) {
 		saveUser(context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE), user);
 	}
 	/**保存用户
-	 * @param context
 	 * @param sdf
 	 * @param user
 	 */
@@ -159,7 +150,6 @@ public class DataManager {
 	}
 
 	/**删除用户
-	 * @param context
 	 * @param sdf
 	 */
 	public void removeUser(SharedPreferences sdf, long userId) {
@@ -171,7 +161,6 @@ public class DataManager {
 	}
 
 	/**设置当前用户手机号
-	 * @param context
 	 * @param phone
 	 */
 	public void setCurrentUserPhone(String phone) {
@@ -183,8 +172,37 @@ public class DataManager {
 		saveUser(user);
 	}
 
+	/**设置当前用户TOKEN
+	 * @param token
+	 */
+	public void setCurrentToken(String token) {
+
+		SharedPreferences sdf = context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE);
+		if (sdf == null || StringUtil.isEmail(token)) {
+			Log.e(TAG, "saveUser sdf == null || user == null >> return;");
+			return;
+		}
+		sdf.edit().remove(KEY_USER_TOKEN).putString(KEY_USER_TOKEN, token).commit();
+
+	}
+
+	/**获取当前用户TOKEN
+	 */
+	public String getCurrentToken() {
+
+		SharedPreferences sdf = context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE);
+		if (sdf == null ) {
+			Log.e(TAG, "saveUser sdf == null || user == null >> return;");
+			return "";
+		}
+		return sdf.getString("KEY_USER_TOKEN","");
+
+	}
+
+
+
+
 	/**设置当前用户姓名
-	 * @param context
 	 * @param name
 	 */
 	public void setCurrentUserName(String name) {

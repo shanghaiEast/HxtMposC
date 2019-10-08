@@ -3,7 +3,7 @@ package com.haoxt.mpos.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.haoxt.mpos.model.CardInfo;
+import com.haoxt.mpos.model.ItemCardInfo;
 import com.haoxt.mpos.model.User;
 
 /**仅测试用，图片地址可能会失效
@@ -54,31 +54,31 @@ public class TestUtil {
 		return list;
 	}
 
-	public static List<CardInfo> getCardInfoList(int page, int count) {
-		List<CardInfo> list = new ArrayList<CardInfo>();
-		long cardId;
-		CardInfo info;
-		int length = (count <= 0 || count > URLS.length ? URLS.length : count);
-		int index;
-		for (int i = 0; i < length ; i++) {
-			cardId = i + page*length + 1;
-			index = i + page*length;
-			while (index >= URLS.length) {
-				index -= URLS.length;
-			}
-			if (index < 0) {
-				index = 0;
-			}
-
-			info = new CardInfo();
-			info.setId(cardId);
-			info.setType("储蓄卡");
-			info.setNumber("310343523234");
-			info.setBankName("招商银行");
-			info.setTag("1");
-
-			list.add(info);
-		}
+	public static List<ItemCardInfo> getCardInfoList(int page, int count) {
+		List<ItemCardInfo> list = new ArrayList<ItemCardInfo>();
+//		long cardId;
+//		ItemCardInfo info;
+//		int length = (count <= 0 || count > URLS.length ? URLS.length : count);
+//		int index;
+//		for (int i = 0; i < length ; i++) {
+//			cardId = i + page*length + 1;
+//			index = i + page*length;
+//			while (index >= URLS.length) {
+//				index -= URLS.length;
+//			}
+//			if (index < 0) {
+//				index = 0;
+//			}
+//
+//			info = new ItemCardInfo();
+//			info.setId(cardId);
+//			info.setType("储蓄卡");
+//			info.setNumber("310343523234");
+//			info.setBankName("招商银行");
+//			info.setTag("1");
+//
+//			list.add(info);
+//		}
 		return list;
 	}
 

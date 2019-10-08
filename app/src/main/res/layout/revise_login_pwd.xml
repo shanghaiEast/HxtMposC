@@ -10,7 +10,8 @@
     <RelativeLayout style="@style/topbar_bg"
         android:id="@+id/titlebar_mypos_apply">
 
-        <ImageButton style="@style/topbar_return_img1" />
+        <ImageButton style="@style/topbar_return_img1"
+            android:onClick="onReturnClick"/>
 
         <TextView
             style="@style/topbar_title"

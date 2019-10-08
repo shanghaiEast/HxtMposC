@@ -44,19 +44,40 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         ListTransaction transaction = data.get(position);
-        if (transaction.payResult == 0) {
+        if ("0".equals(transaction.getTXN_STS_ZH())) {
             holder.itemView.setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick();
+                    mOnItemClickListener.onItemClick(position);
                 }
             });
         }
-        setPayIcon(holder.mPayTypeIv, transaction.payType);
-        setText(holder.mPayResultTv, transaction.payResult);
-        holder.mPayMoneyTv.setText(transaction.payMoney);
-        holder.mPayTimeTv.setText(transaction.payTime);
-        holder.mPayNumTv.setText(transaction.payNum);
+        setPayIcon(holder.mPayTypeIv, Integer.parseInt(transaction.getTXN_CD()));
+        setText(holder.mPayResultTv, Integer.parseInt(transaction.getTXN_STS_ZH()));
+        holder.mPayMoneyTv.setText(transaction.getTXN_AMT());
+        holder.mPayTimeTv.setText(transaction.getTXN_TM());
+        holder.mPayNumTv.setText(setTXNTMText(transaction.getCRD_NO(),transaction.getTXN_CD()));
     }
+
+    private String setTXNTMText(String crd_no, String txn_cd) {
+
+        String cardNo = crd_no.substring(crd_no.length()-4,crd_no.length());
+        String type = "'";
+
+        switch (Integer.parseInt(txn_cd)) {
+            case PayType.ALI_PAY:
+                type = "支付宝";
+                break;
+            case PayType.WE_CHAT:
+                type = "微信";
+                break;
+            case PayType.ORDINARY:
+                type = "刷卡";
+                break;
+        }
+
+        return type+"("+cardNo+")";
+    }
+
 
     @Override
     public int getItemCount() {
@@ -113,7 +134,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     }
 
     public interface OnItemClickListener {
-        void onItemClick();
+        void onItemClick(int position);
     }
 
 }

@@ -10,7 +10,8 @@
         android:id="@+id/titlebar_credit_card_add"
         >
 
-        <ImageButton style="@style/topbar_return_img1" />
+        <ImageButton style="@style/topbar_return_img1"
+            android:onClick="onReturnClick"/>
 
         <TextView
             style="@style/topbar_title"
@@ -32,17 +33,17 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="18dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginRight="13dp"
-                android:background="@drawable/authenticate_progress_card"
-                />
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="42dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="18dp"-->
+                <!--android:layout_marginLeft="13dp"-->
+                <!--android:layout_marginRight="13dp"-->
+                <!--android:background="@drawable/authenticate_progress_card"-->
+                <!--/>-->
 
-            <View style="@style/divider_horizontal_item_line" />
+            <!--<View style="@style/divider_horizontal_item_line" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -158,7 +159,7 @@
                     android:layout_weight="1"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/real_name_auth_debit_card_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,7 +190,7 @@
                     android:layout_weight="1"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/real_name_auth_debit_card_openbank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,17 +234,19 @@
                     android:layout_weight="1"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/real_name_auth_debicard_idcard_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="310123123123123"
+                    android:hint="点击获取开户地区"
                     android:textSize="16sp"
                     android:gravity="center_vertical|right"
                     android:textColor="#999999"
                     android:layout_weight="3"
                     android:background="@color/white"
                     />
+
+                <ImageView style="@style/content_item_rt_img" />
             </LinearLayout>
 
             <View style="@style/divider_horizontal_item_line" />
@@ -264,7 +267,7 @@
                     android:layout_weight="1"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/real_name_auth_debicard_subbranch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

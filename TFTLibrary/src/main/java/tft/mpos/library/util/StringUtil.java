@@ -5,9 +5,14 @@ package tft.mpos.library.util;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -717,6 +722,30 @@ public class StringUtil {
 			default:
 				return s;
 		}
+	}
+
+	public static Map<String, Object> json2map(String str_json) {
+		Map<String, Object> res = null;
+		try {
+			Gson gson = new Gson();
+			res = gson.fromJson(str_json, new TypeToken<Map<String, Object>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+		}
+		return res;
+	}
+
+
+
+	public static Map<String, String> json2mapString(String str_json) {
+		Map<String, String> res = null;
+		try {
+			Gson gson = new Gson();
+			res = gson.fromJson(str_json, new TypeToken<Map<String, String>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+		}
+		return res;
 	}
 
 

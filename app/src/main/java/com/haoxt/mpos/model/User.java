@@ -5,7 +5,7 @@ import tft.mpos.library.base.BaseModel;
 /**用户类
  * @author baowen
  */
-public class User extends BaseModel {
+public class User extends BaseModel  {
 
 	private static final long serialVersionUID = 1L;
 

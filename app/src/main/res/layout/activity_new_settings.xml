@@ -11,7 +11,8 @@
         android:id="@+id/titlebar_my_setting"
         >
 
-        <ImageButton style="@style/topbar_return_img1" />
+        <ImageButton style="@style/topbar_return_img1"
+            android:onClick="onReturnClick"/>
 
         <TextView
             style="@style/topbar_title"

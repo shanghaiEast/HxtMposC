@@ -58,8 +58,6 @@ public abstract class BaseHttpListActivity<T, LV extends AbsListView, A extends 
 	private static final String TAG = "BaseHttpListActivity";
 
 
-
-
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 	protected SmartRefreshLayout srlBaseHttpList;

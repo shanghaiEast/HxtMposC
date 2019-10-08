@@ -18,13 +18,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.haoxt.mpos.activity.UserActivity;
 import com.haoxt.mpos.model.User;
 
 /**UserView的布局类，可直接写在layout文件内。
  * *不如直接使用BaseViewLayout方便
  * @author Lemon
- * @see UserActivity#initView()
  * @use uvl = (BaseViewLayout<Model>) findViewById(R.id.uvl);
  *      uvl.bindView(model);
  */

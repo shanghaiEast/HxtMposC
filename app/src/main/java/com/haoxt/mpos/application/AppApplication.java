@@ -16,10 +16,13 @@ package com.haoxt.mpos.application;
 
 import com.haoxt.mpos.manager.DataManager;
 import com.haoxt.mpos.model.User;
+import com.haoxt.mpos.service.LocationService;
 
 import tft.mpos.library.base.BaseApplication;
 import tft.mpos.library.util.StringUtil;
 
+
+import android.os.Vibrator;
 import android.util.Log;
 
 /**
@@ -28,13 +31,28 @@ import android.util.Log;
  * @author baowen
  */
 public class AppApplication extends BaseApplication {
+    public static final String BUNDATA = "bundata";
     private static final String TAG = "DemoApplication";
-
     private static AppApplication context;
-
     public static AppApplication getInstance() {
         return context;
     }
+
+    public LocationService locationService;
+    public Vibrator mVibrator;
+    public String token;
+    public String merchantId;
+    public String userno;
+    public String snNo;
+    public String bluetooth;
+    public String deviceFrom;
+
+    public String userStatus;                   //用户状态      0-不正常 1-正常
+    public String realNameStatus;               //实名认证状态  0-未认证 1-已认证
+    public String userStlStatus;                //结算卡状态    0-无结算信息 1-已有结算信息
+    public String userTermStatus;               //终端认证状态  0-未绑定 1-已绑定
+    public String userCreditCardStatus;         //信用卡认证状态
+
 
 
 //    暂时用的临时变量,后期接口调通后按实际情况来
@@ -44,6 +62,10 @@ public class AppApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         context = this;
+
+//        locationService = new LocationService(getApplicationContext());
+//        mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+//        SDKInitializer.initialize(getApplicationContext());
 
     }
 
@@ -114,4 +136,97 @@ public class AppApplication extends BaseApplication {
     }
 
 
+    public String getToken() {
+
+        DataManager.getInstance().getCurrentToken();
+        return token;
+    }
+
+    public void setToken(String token) {
+
+        DataManager.getInstance().setCurrentToken(token);
+        this.token = token;
+    }
+
+    public String getUserno() {
+        return userno;
+    }
+
+    public void setUserno(String userno) {
+        this.userno = userno;
+    }
+
+    public String getSnNo() {
+        return snNo;
+    }
+
+    public void setSnNo(String snNo) {
+        this.snNo = snNo;
+    }
+
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+
+    public String getBluetooth() {
+        return bluetooth;
+    }
+
+    public void setBluetooth(String bluetooth) {
+        this.bluetooth = bluetooth;
+    }
+
+    public String getDeviceFrom() {
+        return deviceFrom;
+    }
+
+    public void setDeviceFrom(String deviceFrom) {
+        this.deviceFrom = deviceFrom;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
+    }
+
+    public String getRealNameStatus() {
+        return realNameStatus;
+    }
+
+    public void setRealNameStatus(String realNameStatus) {
+        this.realNameStatus = realNameStatus;
+    }
+
+    public String getUserStlStatus() {
+        return userStlStatus;
+    }
+
+    public void setUserStlStatus(String userStlStatus) {
+        this.userStlStatus = userStlStatus;
+    }
+
+    public String getUserTermStatus() {
+        return userTermStatus;
+    }
+
+    public void setUserTermStatus(String userTermStatus) {
+        this.userTermStatus = userTermStatus;
+    }
+
+    public String getUserCreditCardStatus() {
+        return userCreditCardStatus;
+    }
+
+    public void setUserCreditCardStatus(String userCreditCardStatus) {
+        this.userCreditCardStatus = userCreditCardStatus;
+    }
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
@@ -65,9 +64,9 @@ public class DeviceAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.device_item, null);
+            convertView = mInflater.inflate(R.layout.base_info_message_item, null);
             holder = new ViewHolder();
-            holder.device_item_name = (TextView) convertView.findViewById(R.id.device_item_name);
+            holder.device_item_name = (TextView) convertView.findViewById(R.id.bank_item_name);
 //            holder.button = (Button) convertView.findViewById(R.id.btn);
 //            holder.button.setText("绑定");
             convertView.setTag(holder);

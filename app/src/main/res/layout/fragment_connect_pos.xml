@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/back_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_20"
-        android:layout_marginTop="@dimen/dimen_24"
-        android:src="@mipmap/back" />
+    <!--<ImageView-->
+        <!--android:id="@+id/back_iv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/dimen_20"-->
+        <!--android:layout_marginTop="@dimen/dimen_24"-->
+        <!--android:src="@mipmap/back" />-->
 
     <RelativeLayout
         android:id="@+id/disconnected_ly"

@@ -175,9 +175,10 @@ public class CommonUtil {
 	//启动新Activity方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 	/**打开新的Activity，向左滑入效果
+	 * @param context
 	 * @param intent
 	 */
-	public static void toActivity(final Activity context, final Intent intent) {
+	public static void toActivity(Activity context, final Intent intent) {
 		toActivity(context, intent, true);
 	}
 	/**打开新的Activity
@@ -244,8 +245,6 @@ public class CommonUtil {
 		showProgressDialog(context, null, dialogMessage);
 	}
 	/**展示加载进度条
-	 * @param dialog Title 标题
-	 * @param dialog Message 信息
 	 */
 	public static void showProgressDialog(final Activity context, final String dialogTitle, final String dialogMessage){
 		if (context == null) {
@@ -292,7 +291,6 @@ public class CommonUtil {
 	//show short toast 方法<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	/**快捷显示short toast方法，需要long toast就用 Toast.makeText(string, Toast.LENGTH_LONG).show(); ---不常用所以这个类里不写
 	 * @param context
-	 * @param string
 	 */
 	public static void showShortToast(final Context context, int stringResId) {
 		try {

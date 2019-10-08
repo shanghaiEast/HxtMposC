@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activity_page"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/back_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_20"
-        android:layout_marginTop="@dimen/dimen_24"
-        android:src="@mipmap/back" />
+    <!--<ImageView-->
+        <!--android:id="@+id/back_iv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/dimen_20"-->
+        <!--android:layout_marginTop="@dimen/dimen_24"-->
+        <!--android:src="@mipmap/back" />-->
+
+    <RelativeLayout style="@style/topbar_bg"
+        android:id="@+id/titlebar_mypos_info">
+
+        <ImageButton
+            android:onClick="onReturnClick"
+            style="@style/topbar_return_img1" />
+
+        <!--<ImageButton style="@style/topbar_return_img1" />-->
+
+        <!--<TextView-->
+            <!--style="@style/topbar_title"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="商户信息" />-->
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/title_tv"
@@ -43,7 +62,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/number_et"
+            android:id="@+id/regieter_number_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_17"
@@ -68,7 +87,7 @@
             android:layout_marginTop="@dimen/dimen_15">
 
             <EditText
-                android:id="@+id/auth_code_et"
+                android:id="@+id/regieter_verification_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -77,12 +96,15 @@
                 android:maxLines="@integer/int_1"
                 android:textSize="@dimen/font_12" />
 
-            <TextView
+            <Button
+                android:id="@+id/regieter_get_verification_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:gravity="center_horizontal"
                 android:text="@string/get_auth_code"
                 android:textColor="@color/text_color"
+                style="?android:attr/borderlessButtonStyle"
                 android:textSize="@dimen/font_12" />
         </RelativeLayout>
 
@@ -101,7 +123,7 @@
             android:layout_marginTop="@dimen/dimen_15">
 
             <EditText
-                android:id="@+id/password_et"
+                android:id="@+id/regieter_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -111,6 +133,7 @@
                 android:textSize="@dimen/font_12" />
 
             <CheckBox
+                android:id="@+id/regieter_show_password_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -125,6 +148,7 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/regieter_agreement_cb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/check_box"
@@ -133,6 +157,7 @@
                 android:textSize="@dimen/font_12" />
 
             <TextView
+                android:id="@+id/regieter_user_agreement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/terms_service"
@@ -143,6 +168,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/regieter_commit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_51"
         android:layout_below="@+id/content_ly"

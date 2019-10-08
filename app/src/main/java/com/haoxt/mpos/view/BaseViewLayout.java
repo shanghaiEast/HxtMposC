@@ -20,13 +20,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.haoxt.mpos.activity.UserActivity;
 import tft.mpos.library.base.BaseView;
 
 /**BaseView布局类，可直接写在layout文件内
  * @author Lemon
  * @param <T>
- * @see UserActivity#initView()
  * @use
  * <br>  BaseViewLayout<T> bvl = (BaseViewLayout<T>) findViewById(R.id.bvl);
  * <br>  bvl.createView(new ModelView(context, getResources()));

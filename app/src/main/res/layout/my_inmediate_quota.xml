@@ -9,7 +9,8 @@
     <RelativeLayout style="@style/topbar_bg"
         android:id="@+id/titlebar_realname_result">
 
-        <ImageButton style="@style/topbar_return_img1" />
+        <ImageButton style="@style/topbar_return_img1"
+            android:onClick="onReturnClick"/>
 
         <TextView
             style="@style/topbar_title"
@@ -85,44 +86,178 @@
                 android:textColor="@color/black"
                 android:textSize="27sp" />
 
-            <ListView
-                android:id="@+id/my_inmediate_quota_lv"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:divider="@color/color_bg_layout"
-                android:dividerHeight="10dp"
-                android:minHeight="100dp"
-                android:scrollbars="none" />
+                android:layout_height="111dp"
+                android:background="@drawable/immediate_quota_message_item_backgroud"
+                android:orientation="vertical">
 
-            <!--<Button-->
-                <!--android:id="@+id/tv_bank_authenticate"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="36dp"-->
-                <!--android:layout_marginLeft="24dp"-->
-                <!--android:layout_marginRight="24dp"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--style="@style/btn_next_style_red"-->
-                <!--android:text="认证提额"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:textSize="15sp" />-->
+                <LinearLayout
+                    android:id="@+id/ll_epos_my_bank_card_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="22dp">
 
-            <!--<TextView-->
-                <!--android:id="@+id/tv_bank_authenticate"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="45dp"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:background="@color/white"-->
-                <!--android:drawableLeft="@drawable/add2x"-->
-                <!--android:drawablePadding="15dp"-->
-                <!--android:drawableRight="@drawable/right32"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:paddingLeft="15dp"-->
-                <!--android:text="添加信用卡"-->
-                <!--android:textColor="@color/color_508FF7"-->
-                <!--android:textSize="15sp"-->
-                <!--android:visibility="visible" />-->
+                    <ImageView
+                        android:id="@+id/immediate_quota_message_item_logo"
+                        android:layout_width="51dp"
+                        android:layout_height="51dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/immediate_quota_message_item_ic_card" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单日"
+                            android:textColor="@color/gray_3"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_immediate_quota_day_creaditcard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,345.36"
+                            android:textColor="#F45901"
+                            android:layout_marginTop="11dp"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单笔"
+                            android:textColor="@color/gray_3"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_immediate_quota_time_creaditcard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,345.36"
+                            android:textColor="#F45901"
+                            android:layout_marginTop="11dp"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="磁条卡贷记卡"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/gray_3"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="111dp"
+                android:background="@drawable/immediate_quota_message_item_backgroud"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="22dp">
+
+                    <ImageView
+                        android:layout_width="51dp"
+                        android:layout_height="51dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/immediate_quota_message_item_credit_card" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_bank_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单日"
+                            android:textColor="@color/gray_3"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_immediate_quota_day_iccard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,345.36"
+                            android:textColor="#F45901"
+                            android:layout_marginTop="11dp"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="单笔"
+                            android:textColor="@color/gray_3"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_immediate_quota_time_iccard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,345.36"
+                            android:textColor="#F45901"
+                            android:layout_marginTop="11dp"
+                            android:textSize="12sp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="IC 借记卡"
+                        android:textColor="@color/gray_3"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 

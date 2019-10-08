@@ -16,25 +16,16 @@ package com.haoxt.mpos.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.haoxt.mpos.R;
-import com.haoxt.mpos.model.CardInfo;
-import com.haoxt.mpos.model.User;
+import com.haoxt.mpos.model.ItemCardInfo;
 
 import tft.mpos.library.base.BaseModel;
 import tft.mpos.library.base.BaseView;
-import tft.mpos.library.ui.WebViewActivity;
-import tft.mpos.library.util.CommonUtil;
-import tft.mpos.library.util.StringUtil;
 
 /**用户View
  * @author Lemon
@@ -50,7 +41,7 @@ import tft.mpos.library.util.StringUtil;
  * <br> userView.setOnDataChangedListener(onDataChangedListener);data = userView.getData();//非必需
  * <br> userView.setOnClickListener(onClickListener);//非必需
  */
-public class CardInfoView extends BaseView<CardInfo> implements OnClickListener {
+public class CardInfoView extends BaseView<ItemCardInfo> implements OnClickListener {
 	private static final String TAG = "UserView";
 
 	public CardInfoView(Activity context, ViewGroup parent) {
@@ -71,19 +62,19 @@ public class CardInfoView extends BaseView<CardInfo> implements OnClickListener 
 	}
 
 	@Override
-	public void bindView(CardInfo data_){
-		super.bindView(data_ != null ? data_ : new CardInfo());
+	public void bindView(ItemCardInfo data_){
+		super.bindView(data_ != null ? data_ : new ItemCardInfo());
 
-		tvBankName.setText("ID:" + data.getBankName());
-		tvBankCardType.setText("ID:" + data.getType());
-		tvBankNo.setText("ID:" + data.getNumber());
+		tvBankName.setText( data.getACCT_NAME());
+		tvBankCardType.setText("信用卡");
+		tvBankNo.setText( data.getACCT_NO());
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (BaseModel.isCorrect(data) == false) {
-			return;
-		}
+//		if (BaseModel.isCorrect(data) == false) {
+//			return;
+//		}
 		switch (v.getId()) {
 		case R.id.ivUserViewHead:
 //			toActivity(WebViewActivity.createIntent(context, data.getName(), data.getHead()));

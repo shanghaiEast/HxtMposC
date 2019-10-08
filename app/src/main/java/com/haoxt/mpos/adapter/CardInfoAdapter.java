@@ -3,17 +3,15 @@ package com.haoxt.mpos.adapter;
 import android.app.Activity;
 import android.view.ViewGroup;
 
-import com.haoxt.mpos.model.CardInfo;
-import com.haoxt.mpos.model.User;
+import com.haoxt.mpos.model.ItemCardInfo;
 import com.haoxt.mpos.view.CardInfoView;
-import com.haoxt.mpos.view.UserView;
 
 import tft.mpos.library.base.BaseAdapter;
 
 /**用户adapter
  * @author baowen
  */
-public class CardInfoAdapter extends BaseAdapter<CardInfo, CardInfoView> {
+public class CardInfoAdapter extends BaseAdapter<ItemCardInfo, CardInfoView> {
 	//	private static final String TAG = "UserAdapter";
 
 	public CardInfoAdapter(Activity context) {

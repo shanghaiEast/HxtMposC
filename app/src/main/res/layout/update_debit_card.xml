@@ -43,12 +43,14 @@
                 >
 
                 <TextView
+                    android:id="@+id/update_merchan_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="陈凯凯"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/update_merchan_card_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"

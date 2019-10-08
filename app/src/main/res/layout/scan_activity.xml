@@ -117,7 +117,7 @@
     </LinearLayout>
 
 
-    <!-- 必须在最外层，且不能指定宽高，否则扫描解析成功率很低 -->
+     必须在最外层，且不能指定宽高，否则扫描解析成功率很低
     <com.zxing.view.ViewfinderView
         android:id="@+id/vfvCameraScan"
         android:layout_width="match_parent"

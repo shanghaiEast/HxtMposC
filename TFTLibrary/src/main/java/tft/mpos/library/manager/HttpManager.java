@@ -28,7 +28,6 @@ import tft.mpos.library.interfaces.OnHttpResponseListener;
 import tft.mpos.library.model.Parameter;
 import tft.mpos.library.util.JSON;
 import tft.mpos.library.util.Log;
-import tft.mpos.library.util.SSLUtil;
 import tft.mpos.library.util.StringUtil;
 
 /**HTTP请求管理类
@@ -45,15 +44,14 @@ public class HttpManager {
 	private SSLSocketFactory socketFactory;// 单例
 	private HttpManager(Context context) {
 		this.context = context;
-
-		try {
-			//TODO 初始化自签名，demo.cer（这里demo.cer是空文件）为服务器生成的自签名证书，存放于assets目录下，如果不需要自签名可删除
-			socketFactory = SSLUtil.getSSLSocketFactory(context.getAssets().open("demo.cer"));
-		} catch (Exception e) {
-			Log.e(TAG, "HttpManager  try {" +
-					"  socketFactory = SSLUtil.getSSLSocketFactory(context.getAssets().open(\"demo.cer\"));\n" +
-					"\t\t} catch (Exception e) {\n" + e.getMessage());
-		}
+//		try {
+//			//TODO 初始化自签名，demo.cer（这里demo.cer是空文件）为服务器生成的自签名证书，存放于assets目录下，如果不需要自签名可删除
+//			socketFactory = SSLUtil.getSSLSocketFactory(context.getAssets().open("demo.cer"));
+//		} catch (Exception e) {
+//			Log.e(TAG, "HttpManager  try {" +
+//					"  socketFactory = SSLUtil.getSSLSocketFactory(context.getAssets().open(\"demo.cer\"));\n" +
+//					"\t\t} catch (Exception e) {\n" + e.getMessage());
+//		}
 	}
 
 	private static HttpManager instance;// 单例
@@ -79,7 +77,7 @@ public class HttpManager {
 	 *            在发起请求的类中可以用requestCode来区分各个请求
 	 * @param listener
 	 */
-	public void get(final Map<String, Object> request, final String url,
+	public void get(String token,final Map<String, Object> request, final String url,
 					final int requestCode, final OnHttpResponseListener listener) {
 
 		new AsyncTask<Void, Void, Exception>() {
@@ -87,7 +85,7 @@ public class HttpManager {
 			String result;
 			@Override
 			protected Exception doInBackground(Void... params) {
-				OkHttpClient client = getHttpClient(url);
+				OkHttpClient client = getHttpClient(token, url);
 				if (client == null) {
 					return new Exception(TAG + ".get  AsyncTask.doInBackground  client == null >> return;");
 				}
@@ -146,7 +144,7 @@ public class HttpManager {
 	 * @param listener
 	 */
 	@Deprecated
-	public void get(final List<Parameter> paramList, final String url,
+	public void get(String token,final List<Parameter> paramList, final String url,
 					final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		if (paramList != null) {
@@ -154,7 +152,7 @@ public class HttpManager {
 				request.put(p.key, p.value);
 			}
 		}
-		get(request, url, requestCode, listener);
+		get(token,request, url, requestCode, listener);
 	}
 
 
@@ -164,29 +162,31 @@ public class HttpManager {
 
 
 	/**POST请求，以FORM表单形式提交
+	 * @param token
 	 * @param request 请求
 	 * @param url 网络地址
 	 * @param requestCode
-	 *            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
-	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br/>
-	 *            在发起请求的类中可以用requestCode来区分各个请求
+*            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
+*            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br/>
+*            在发起请求的类中可以用requestCode来区分各个请求
 	 * @param listener
 	 */
-	public void post(final Map<String, Object> request, final String url
+	public void post(String token, final Map<String, Object> request, final String url
 			, final int requestCode, final OnHttpResponseListener listener) {
-		post(request, url, false, requestCode, listener);
+		post(token,request, url, false, requestCode, listener);
 	}
 	/**POST请求
+	 * @param token
 	 * @param request 请求
 	 * @param url 网络地址
 	 * @param isJson JSON : FORM
 	 * @param requestCode
-	 *            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
-	 *            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br/>
-	 *            在发起请求的类中可以用requestCode来区分各个请求
+*            请求码，类似onActivityResult中请求码，当同一activity中以实现接口方式发起多个网络请求时，请求结束后都会回调
+*            {@link OnHttpResponseListener#onHttpResponse(int, String, Exception)}<br/>
+*            在发起请求的类中可以用requestCode来区分各个请求
 	 * @param listener
 	 */
-	public void post(final Map<String, Object> request, final String url, final boolean isJson
+	public void post(String token, final Map<String, Object> request, final String url, final boolean isJson
 			, final int requestCode, final OnHttpResponseListener listener) {
 		new AsyncTask<Void, Void, Exception>() {
 
@@ -195,7 +195,7 @@ public class HttpManager {
 			protected Exception doInBackground(Void... params) {
 
 				try {
-					OkHttpClient client = getHttpClient(url);
+					OkHttpClient client = getHttpClient(token,url);
 					if (client == null) {
 						return new Exception(TAG + ".post  AsyncTask.doInBackground  client == null >> return;");
 					}
@@ -245,7 +245,7 @@ public class HttpManager {
 	}
 
 
-	/**POST请求，以FORM表单形式提交，最快在 19.0 删除，请尽快迁移到 {@link #post(Map, String, int, OnHttpResponseListener)}
+	/**POST请求，以FORM表单形式提交，最快在 19.0 删除，请尽快迁移到 {@link #post(String, Map, String, int, OnHttpResponseListener)}
 	 * @param paramList 请求参数列表，（可以一个键对应多个值）
 	 * @param url 网络地址
 	 * @param requestCode
@@ -256,7 +256,7 @@ public class HttpManager {
 	 * @param listener
 	 */
 	@Deprecated
-	public void post(final List<Parameter> paramList, final String url,
+	public void post(String token,final List<Parameter> paramList, final String url,
 					 final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		if (paramList != null) {
@@ -264,7 +264,7 @@ public class HttpManager {
 				request.put(p.key, p.value);
 			}
 		}
-		post(request, url, requestCode, listener);
+		post(token, request, url, requestCode, listener);
 	}
 
 
@@ -272,10 +272,12 @@ public class HttpManager {
 	//httpGet/httpPost 内调用方法 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 	/**
+	 *
+	 * @param token
 	 * @param url
 	 * @return
 	 */
-	private OkHttpClient getHttpClient(String url) {
+	private OkHttpClient getHttpClient(String token, String url) {
 		Log.i(TAG, "getHttpClient  url = " + url);
 		if (StringUtil.isEmpty(url)) {
 			Log.e(TAG, "getHttpClient  StringUtil.isEmpty(url) >> return null;");
@@ -286,6 +288,7 @@ public class HttpManager {
 				.connectTimeout(15, TimeUnit.SECONDS)
 				.writeTimeout(10, TimeUnit.SECONDS)
 				.readTimeout(10, TimeUnit.SECONDS)
+				.addInterceptor(new TokenHeaderInterceptor(BaseApplication.getInstance(), token))
 				.cookieJar(new CookieJar() {
 
 					@Override
