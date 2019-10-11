@@ -1,6 +1,7 @@
 package com.haoxt.mpos.activity.home;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -28,6 +29,7 @@ import com.haoxt.mpos.model.DeviceEntity;
 import com.haoxt.mpos.util.DeviceSharedMSG;
 import com.haoxt.mpos.util.HttpRequest;
 import com.haoxt.mpos.util.TYDeviceDelegate;
+import com.haoxt.mpos.view.DialogThridUtils;
 import com.whty.bluetooth.manage.util.BluetoothStruct;
 import com.whty.bluetoothsdk.util.Utils;
 import com.whty.comm.inter.ICommunication;
@@ -40,6 +42,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 import tft.mpos.library.base.BaseActivity;
 import tft.mpos.library.interfaces.OnHttpResponseListener;
 import tft.mpos.library.util.StringUtil;
@@ -52,7 +56,10 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 	private static final String TAG = "SettingActivity";
 	private DeviceEntity deviceInfo;
 	private ListView lvDeviceList;
+	private GifImageView gifImageView;
+	GifDrawable gifDrawable;
 	private DeviceAdapter adapter;
+	private Dialog mDialog;
 	public LocationClient mLocationClient = null;
 	private MyLocationListener myListener = new MyLocationListener();
 	private String latitudeStr,longitudeStr,deviceSn,bluetoothName,bluetoothAddress,type,switchingData;
@@ -150,10 +157,15 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+	@SuppressLint("WrongViewCast")
 	@Override
 	public void initView() {//必须调用
 
 		lvDeviceList = (ListView) findViewById(R.id.lv_device_list);
+		gifImageView = (GifImageView)findViewById(R.id.bindpos_gif);
+
+		gifDrawable = (GifDrawable) gifImageView.getDrawable();
+		gifDrawable.start();
 
 	}
 
@@ -495,6 +507,9 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 
 		this.connectDevice(deviceInfo.getAdress());
 
+		gifDrawable.stop();
+		mDialog = DialogThridUtils.showWaitDialog(this, "正在绑定中请稍后...", false, true);
+
 //		if (deviceConnected) {
 //			new Thread() {
 //				public void run() {
@@ -641,8 +656,13 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 					updateWorkingKey();
 					break;
 
-				case DeviceSharedMSG.DEVICESIGNSUCCESS:
+				case DeviceSharedMSG.DEVICESIGNSUCCESS:       //上传设备信息
 					uploadDeviceinfo();
+					break;
+
+				case DeviceSharedMSG.UPLOADDEVICEINFOSUCCESS:		  //流程结束
+					DialogThridUtils.closeDialog(mDialog);
+					toActivity(DeviceBindResultActivity.createIntent(context));
 					break;
 
 
@@ -677,7 +697,12 @@ public class DeviceBindActivity extends BaseActivity implements AdapterView.OnIt
 
                 if("000000".equals(dataMap.get("rspCd").toString())){
 
-                    toActivity(DeviceBindResultActivity.createIntent(context));
+					deviceHandler.obtainMessage(
+							DeviceSharedMSG.UPLOADDEVICEINFOSUCCESS)
+							.sendToTarget();
+
+
+
 
                 }else{
                     showShortToast("查询失败");

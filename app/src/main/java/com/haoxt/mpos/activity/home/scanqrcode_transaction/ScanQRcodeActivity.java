@@ -51,12 +51,15 @@ public class ScanQRcodeActivity extends CaptureActivity implements ActivityPrese
     }
 
     private ImageView type;
-    private TextView amount;
+    private TextView amount,titile,payDes;
     @Override
     public void initView() {
 
         type = this.findViewById(R.id.scan_code_type);
         amount = this.findViewById(R.id.scan_code_amount);
+        titile = this.findViewById(R.id.scan_code_title);
+        payDes = this.findViewById(R.id.scan_code_tx);
+
 //        findViewById(R.id.svCameraScan),
 //        findViewById(R.id.vfvCameraScan);
     }
@@ -67,6 +70,19 @@ public class ScanQRcodeActivity extends CaptureActivity implements ActivityPrese
     public void initData() {
 
         pageData = (HashMap<String, Object>) getIntent().getSerializableExtra("pageData");
+        String scantype = pageData.get("scantype").toString();
+        amount.setText(pageData.get("amount").toString());
+
+        if ("aliPay".equals(scantype)){
+            titile.setText("支付宝");
+            type.setBackgroundResource(R.mipmap.ali_pay);
+            payDes.setText("支付宝扫一扫向我付款");
+
+        }else{
+            titile.setText("微信");
+            type.setBackgroundResource(R.mipmap.we_chat);
+            payDes.setText("微信扫一扫向我付款");
+        }
 
     }
 

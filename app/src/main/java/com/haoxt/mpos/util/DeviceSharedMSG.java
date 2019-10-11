@@ -32,6 +32,7 @@ public class DeviceSharedMSG {
 	public final static int UPLOADTRANSATIONINFO = 25;
 	public final static int GETPINBLOCKSATRT = 26;
 	public final static int UPLOADTRANSATIONINFOSUCESS = 27;
+	public final static int UPLOADDEVICEINFOSUCCESS = 28;
 
 
 	public final static int SHOW_MSG = 31;

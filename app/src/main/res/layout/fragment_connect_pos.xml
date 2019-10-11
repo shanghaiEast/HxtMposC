@@ -11,58 +11,41 @@
         <!--android:layout_marginTop="@dimen/dimen_24"-->
         <!--android:src="@mipmap/back" />-->
 
-    <RelativeLayout
-        android:id="@+id/disconnected_ly"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen_54"
-            android:background="@mipmap/search_pos_icon" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_76"
-            android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="@dimen/dimen_16"
-            android:layout_marginBottom="@dimen/dimen_79"
-            android:background="@mipmap/disconnect_item_bg"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/dimen_32">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/timg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/dimen_23"
-                android:text="新国都-G2 自备机"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/font_14" />
-        </LinearLayout>
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/connected_ly"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_48">
 
-        <ImageView
-            android:id="@+id/connected_iv"
+        <!--<ImageView-->
+            <!--android:id="@+id/connected_iv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="@dimen/dimen_99"-->
+            <!--android:background="@mipmap/connected_icon" />-->
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/transationpos_gif"
+            android:layout_width="@dimen/dimen_200"
+            android:layout_height="@dimen/dimen_200"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:src="@drawable/search_pos" />
+
+        <TextView
+            android:id="@+id/transation_pos_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/transationpos_gif"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen_99"
-            android:background="@mipmap/connected_icon" />
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="请连接刷卡器"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/font_16" />
 
         <LinearLayout
             android:id="@+id/pos_item_ly"
@@ -79,9 +62,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/timg" />
+                android:src="@drawable/mpos_logo" />
 
             <TextView
+                android:id="@+id/buletooth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

@@ -21,13 +21,17 @@ import com.haoxt.mpos.activity.my.RealNameAuthenticationActivity;
 import com.haoxt.mpos.adapter.SaleListAdapter;
 import com.haoxt.mpos.application.AppApplication;
 import com.haoxt.mpos.entity.ListSaleDetail;
+import com.haoxt.mpos.util.HttpRequest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import tft.mpos.library.base.BaseFragment;
+import tft.mpos.library.interfaces.OnHttpResponseListener;
 import tft.mpos.library.ui.AlertDialog;
+import tft.mpos.library.util.StringUtil;
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener,AlertDialog.OnDialogButtonClickListener {
 
@@ -143,57 +147,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
 
     private void getUserStatus(String type) {
 
-        if(AppApplication.getInstance().getRealNameStatus().equals("0")){
-            new AlertDialog(context, "提示", "当前账号未实名认证，请实名认证", true, 0, new AlertDialog.OnDialogButtonClickListener(){
-                @Override
-                public void onDialogButtonClick(int requestCode, boolean isPositive) {
 
-                    if (isPositive == true){
-                        toActivity(RealNameAuthenticationActivity.createIntent(context));
-                    }else{
-                        Log.d("状态--------->", "--"+isPositive+"===="+requestCode);
-                    }
-                }
-            }).show();
-            return;
 
-        }else if(AppApplication.getInstance().getUserTermStatus().equals("0")){
-            new AlertDialog(context, "提示", "当前账号未绑定机具，请绑定机具", true, 0, new AlertDialog.OnDialogButtonClickListener(){
-                @Override
-                public void onDialogButtonClick(int requestCode, boolean isPositive) {
 
-                    if (isPositive == true){
-                        toActivity(DeviceBindActivity.createIntent(context));
-                    }else{
-                        Log.d("状态--------->", "--"+isPositive+"===="+requestCode);
-                    }
-
-                }
-            }).show();
-            return;
-
-        }else if(AppApplication.getInstance().getUserCreditCardStatus().equals("0")){
-            new AlertDialog(context, "提示", "当前账号未信用卡认证，请先信用卡认证", true, 0, new AlertDialog.OnDialogButtonClickListener(){
-                @Override
-                public void onDialogButtonClick(int requestCode, boolean isPositive) {
-
-                    if (isPositive == true){
-                        toActivity(CreditcardAuthenticateActivity.createIntent(context,0));
-                    }else{
-                        Log.d("状态--------->", "--"+isPositive+"===="+requestCode);
-                    }
-                }
-            }).show();
-            return;
-        }else{
-            if("".equals(type)){
-
-            }else{
-                Intent intent = new Intent(context, StartTransationActivity.class);
-                intent.putExtra("paytype", type);
-                toActivity(intent);
-            }
-        }
 
 
 //        HttpRequest.getUserInfo(0, new OnHttpResponseListener() {
@@ -219,6 +175,88 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,A
 //                }
 //            }
 //        });
+
+        HttpRequest.chkRealSts(0, new OnHttpResponseListener() {
+
+            @Override
+            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+
+                if(!StringUtil.isEmpty(resultJson)){
+                    Map<String, Object> dataMap =  StringUtil.json2map(resultJson);
+                    Map<String, Object>  userData = (Map<String, Object>) dataMap.get("rspMap");
+
+                    if(dataMap!=null&&"000000".equals(dataMap.get("rspCd").toString())){
+
+                        AppApplication.getInstance().setRealNameStatus(userData.get("USR_REAL_STS").toString());
+
+                        //        if(AppApplication.getInstance().getRealNameStatus().equals("0")){
+                        //            new AlertDialog(context, "提示", "当前账号未实名认证，请实名认证", true, 0, new AlertDialog.OnDialogButtonClickListener(){
+                        //                @Override
+                        //                public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                        //
+                        //                    if (isPositive == true){
+                        //                        toActivity(RealNameAuthenticationActivity.createIntent(context));
+                        //                    }else{
+                        //                        Log.d("状态--------->", "--"+isPositive+"===="+requestCode);
+                        //                    }
+                        //                }
+                        //            }).show();
+                        //            return;
+                        //
+                        //        }else if(AppApplication.getInstance().getUserTermStatus().equals("0")){
+                        //            new AlertDialog(context, "提示", "当前账号未绑定机具，请绑定机具", true, 0, new AlertDialog.OnDialogButtonClickListener(){
+                        //                @Override
+                        //                public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                        //
+                        //                    if (isPositive == true){
+                        //                        toActivity(DeviceBindActivity.createIntent(context));
+                        //                    }else{
+                        //                        Log.d("状态--------->", "--"+isPositive+"===="+requestCode);
+                        //                    }
+                        //
+                        //                }
+                        //            }).show();
+                        //            return;
+                        //
+                        //        }else if(AppApplication.getInstance().getUserCreditCardStatus().equals("0")){
+                        //            new AlertDialog(context, "提示", "当前账号未信用卡认证，请先信用卡认证", true, 0, new AlertDialog.OnDialogButtonClickListener(){
+                        //                @Override
+                        //                public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                        //
+                        //                    if (isPositive == true){
+                        //                        toActivity(CreditcardAuthenticateActivity.createIntent(context,0));
+                        //                    }else{
+                        //                        Log.d("状态--------->", "--"+isPositive+"===="+requestCode);
+                        //                    }
+                        //                }
+                        //            }).show();
+                        //            return;
+                        //        }else{
+                        //            if("".equals(type)){
+                        //
+                        //            }else{
+                        //                Intent intent = new Intent(context, StartTransationActivity.class);
+                        //                intent.putExtra("paytype", type);
+                        //                toActivity(intent);
+                        //            }
+                        //        }
+
+                        if("".equals(type)){
+
+                        }else{
+                            Intent intent = new Intent(context, StartTransationActivity.class);
+                            intent.putExtra("paytype", type);
+                            toActivity(intent);
+                        }
+
+                    }else{
+                        showShortToast("获取商户信息失败");
+                    }
+                }
+            }
+        });
+
+
 
     }
 

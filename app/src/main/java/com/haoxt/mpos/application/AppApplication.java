@@ -45,8 +45,7 @@ public class AppApplication extends BaseApplication {
     public String userno;
     public String snNo;
     public String bluetooth;
-    public String deviceFrom;
-
+    public String mac;
     public String userStatus;                   //用户状态      0-不正常 1-正常
     public String realNameStatus;               //实名认证状态  0-未认证 1-已认证
     public String userStlStatus;                //结算卡状态    0-无结算信息 1-已有结算信息
@@ -182,14 +181,6 @@ public class AppApplication extends BaseApplication {
         this.bluetooth = bluetooth;
     }
 
-    public String getDeviceFrom() {
-        return deviceFrom;
-    }
-
-    public void setDeviceFrom(String deviceFrom) {
-        this.deviceFrom = deviceFrom;
-    }
-
     public String getUserStatus() {
         return userStatus;
     }
@@ -228,5 +219,12 @@ public class AppApplication extends BaseApplication {
 
     public void setUserCreditCardStatus(String userCreditCardStatus) {
         this.userCreditCardStatus = userCreditCardStatus;
+    }
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
     }
 }

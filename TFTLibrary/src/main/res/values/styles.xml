@@ -30,7 +30,7 @@
         <item name="android:splitMotionEvents">false</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:background">@color/activity_bg</item>
+        <item name="android:background">@color/topbar_bg_white</item>
         <item name="android:orientation">vertical</item>
         <!-- 状态栏沉浸 <<<<<<<<<<<<<<<<< -->
         <item name="android:clipToPadding">true</item>

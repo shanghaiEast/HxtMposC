@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -43,6 +44,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 import tft.mpos.library.base.BaseActivity;
 import tft.mpos.library.interfaces.OnHttpResponseListener;
 import tft.mpos.library.util.StringUtil;
@@ -58,6 +61,9 @@ public class ConnectPosActivity extends BaseActivity implements View.OnClickList
     private SignaturePopup mDialog;
     private ImageView mBackIv;
     private ImageView mConnectedIv;
+    private TextView buletooth,posStatus;
+    private GifImageView gifImageView;
+    GifDrawable gifDrawable;
     private LinearLayout mPosItemLy;
     private BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
     private ConnectPosActivity.DeviceHandler deviceHandler;
@@ -107,63 +113,59 @@ public class ConnectPosActivity extends BaseActivity implements View.OnClickList
         deviceApi = new DeviceApi(context);
         deviceApi.setDelegate(deviceDelegate);
 
-//        if("".equals(AppApplication.getInstance().getBluetooth())){
-//            IntentFilter intent = new IntentFilter();
-//            intent.addAction(BluetoothDevice.ACTION_FOUND);
-//            intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-//            intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-//            intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-//            intent.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-//            intent.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
-//            intent.addAction(BluetoothDevice.ACTION_NAME_CHANGED);
-//            intent.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
-//            intent.setPriority(-1000);
-//
-//            context.registerReceiver(broadcastReceiver, intent);
-//            if (!isInited) {
-//                if (deviceApi.initDevice(ICommunication.BLUETOOTH_DEVICE)) {
-//                    isInited = true;
-//                } else {
-//                }
-//            }
-//            if (!deviceConnected) {
-//                btAdapter.cancelDiscovery();
-//                btAdapter.startDiscovery();
-//
-//                // BlueToothUtil.items.clear();
-//                items.clear();
-//                devices.clear();
-//            } else {
-//                Toast.makeText(context,
-//                        "", Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//
-//        }else{
-//                if (!isInited) {
-//                    if (deviceApi.initDevice(ICommunication.BLUETOOTH_DEVICE)) {
-//                        isInited = true;
-//                    } else {
-//                    }
-//                }
-//              connectDevice("test");
-//        }
-        if (!isInited) {
+        if("".equals(AppApplication.getInstance().getMac())){
+            IntentFilter intent = new IntentFilter();
+            intent.addAction(BluetoothDevice.ACTION_FOUND);
+            intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+            intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+            intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+            intent.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+            intent.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+            intent.addAction(BluetoothDevice.ACTION_NAME_CHANGED);
+            intent.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+            intent.setPriority(-1000);
+
+            context.registerReceiver(broadcastReceiver, intent);
+            if (!isInited) {
                 if (deviceApi.initDevice(ICommunication.BLUETOOTH_DEVICE)) {
                     isInited = true;
                 } else {
                 }
             }
+            if (!deviceConnected) {
+                btAdapter.cancelDiscovery();
+                btAdapter.startDiscovery();
 
-        connectDevice("test");
+                // BlueToothUtil.items.clear();
+                items.clear();
+                devices.clear();
+            } else {
+                Toast.makeText(context,
+                        "", Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+        }else{
+            if (!isInited) {
+                if (deviceApi.initDevice(ICommunication.BLUETOOTH_DEVICE)) {
+                    isInited = true;
+                } else {
+                }
+            }
+            connectDevice(AppApplication.getInstance().getMac());
+        }
 
     }
 
     @Override
     public void initView() {
         mBackIv = findView(R.id.back_iv);
-        mConnectedIv = findView(R.id.connected_iv);
         mPosItemLy = findView(R.id.pos_item_ly);
+        buletooth = findView(R.id.buletooth);
+        posStatus = findView(R.id.transation_pos_status);
+        gifImageView = findView(R.id.transationpos_gif);
+        gifDrawable = (GifDrawable) gifImageView.getDrawable();
+        gifDrawable.start();
     }
 
     private HashMap<String, Object> pageData;
@@ -171,6 +173,7 @@ public class ConnectPosActivity extends BaseActivity implements View.OnClickList
     public void initData() {
         pageData = (HashMap<String, Object>) getIntent().getSerializableExtra("pageData");
         deviceInfo = new HashMap<String, String>();
+        buletooth.setText(AppApplication.getInstance().getBluetooth());
     }
 
     @Override
@@ -224,11 +227,16 @@ public class ConnectPosActivity extends BaseActivity implements View.OnClickList
                 case DeviceSharedMSG.CONNECTEDDEVICE_SUCCESS:   //连接成功
                     show_msg = (String) msg.obj;
                     Log.d("测试流程--------->", show_msg);
+                    posStatus.setText("设备连接成功");
+
+                    gifDrawable.stop();
+                    gifImageView.setBackgroundResource(R.mipmap.connected_icon);
                     getDeviceSN();
 
                     break;
 
                 case DeviceSharedMSG.CONNECTEDDEVICE_FAIL:		//连接失败
+                    posStatus.setText("设备连接失败");
                     show_msg = (String) msg.obj;
                     Log.d("--------->", show_msg);
                     break;
@@ -252,6 +260,8 @@ public class ConnectPosActivity extends BaseActivity implements View.OnClickList
                     break;
 
                 case DeviceSharedMSG.STARTREADCARD:				//开始刷卡
+
+                    posStatus.setText("设备成功，请刷卡");
                     startSwiper("1","","0x00","0x64","0x07");
                     break;
 
@@ -541,7 +551,7 @@ public class ConnectPosActivity extends BaseActivity implements View.OnClickList
      * 上送交易
      */
     public void uploadtransation() {
-        String transType = "purchase";
+        String transType = pageData.get("transType").toString();
         String snNo = deviceInfo.get("snNo");
         String snTypNo = deviceInfo.get("snTypNo");
         String mercId = AppApplication.getInstance().getMerchantId();

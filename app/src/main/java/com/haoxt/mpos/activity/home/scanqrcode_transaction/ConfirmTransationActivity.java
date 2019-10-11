@@ -91,7 +91,7 @@ public class ConfirmTransationActivity extends BaseActivity implements View.OnCl
         String city =  pageData.get("city").toString();
         String district =  pageData.get("district").toString();
 
-        HttpRequest.transation(snNo, mercId,"0.01",scanStr,scantype,province,city,district,0, new OnHttpResponseListener() {
+        HttpRequest.transation(snNo, mercId,amount,scanStr,scantype,province,city,district,0, new OnHttpResponseListener() {
 
             @Override
             public void onHttpResponse(int requestCode, String resultJson, Exception e) {

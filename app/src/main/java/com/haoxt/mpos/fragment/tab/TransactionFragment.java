@@ -177,7 +177,16 @@ public class TransactionFragment extends BaseFragment implements View.OnClickLis
         LayoutInflater inflater = getLayoutInflater();
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.popup_condition, null);
         TextView cancel_tv = layout.findViewById(R.id.cancel_tv);
+        TextView confirm_tv = layout.findViewById(R.id.confirm_tv);
+        confirm_tv.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                mConditionPopup.cancel();
+            }
+        });
         cancel_tv.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 mConditionPopup.cancel();

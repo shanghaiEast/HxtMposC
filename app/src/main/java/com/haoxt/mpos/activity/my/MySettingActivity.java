@@ -115,6 +115,11 @@ public class MySettingActivity extends BaseActivity implements OnClickListener {
 	}
 
 	@Override
+	public void onReturnClick(View v) {
+		finish();
+	}
+
+	@Override
 	public void onClick(View view) {
 
 		switch (view.getId()) {

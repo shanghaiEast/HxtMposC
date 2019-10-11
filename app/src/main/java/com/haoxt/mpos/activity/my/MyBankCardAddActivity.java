@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PersistableBundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,7 +51,9 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
     private static final int REQUEST_TO_PLACE_PICKER = 32,FORMBANKSEARCH = 1002,FORMBANKSEARCHBASE = 1000;
     public final int MSG_GET_BANK_OK = 1;
     private static final String TAG = "SettingActivity";
-    private String bankCardSide,bankName,bankNumber,topBankNo,topBankName,subbranchBankNo,subbranchBankName;
+    private String bankCardSide,bankName,bankNumber,topBankNo,topBankName,subbranchBankNo,subbranchBankName,
+            proId,proName,cityId,cityName;
+
     private final static int /*REQ_PHOTO1 = 1,*/ REQ_CAMERA1 = 2, /*REQ_PHOTO2 = 3,*/
             REQ_CAMERA2 = 4;
     private  CityBean provinceBean,cityBean,areaBean;
@@ -70,8 +75,9 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
     //启动方法>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_bank_card_add);
 
@@ -80,6 +86,17 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
         initData();
         initEvent();
         //功能归类分区方法，必须调用>>>>>>>>>>
+
+        if(savedInstanceState !=null){
+
+            topBankNo = savedInstanceState.getString("topBankNo");
+            topBankName = savedInstanceState.getString("topBankName");
+            proId = savedInstanceState.getString("proId");
+            proName = savedInstanceState.getString("proName");
+            cityId = savedInstanceState.getString("cityId");
+            cityName = savedInstanceState.getString("cityName");
+
+        }
 
     }
 
@@ -141,6 +158,18 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("topBankNo",topBankNo);
+        outState.putString("topBankName",topBankName);
+        outState.putString("proId",proId);
+        outState.putString("proName",proName);
+        outState.putString("cityId",cityId);
+        outState.putString("cityName",cityName);
+    }
+
+    @Override
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -158,13 +187,13 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
                     return;
                 }
 
-                if(StringUtil.isEmpty(provinceBean.getId())&&provinceBean.getId()!=""){
+                if(StringUtil.isEmpty(proId)&&proId!=""){
                     Toast.makeText(this, "请选择省份", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
-                if(StringUtil.isEmpty(cityBean.getId())&&cityBean.getId()!=""){
+                if(StringUtil.isEmpty(cityId)&&cityName!=""){
                     Toast.makeText(this, "请选择城市", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -172,8 +201,8 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
                 Intent intent = new Intent(context, BankSearchActivity.class);
                 intent.putExtra("searchPageFrom","1");
                 intent.putExtra("topBankNo",topBankNo);
-                intent.putExtra("province",provinceBean.getId());
-                intent.putExtra("city",cityBean.getId());
+                intent.putExtra("province",proId);
+                intent.putExtra("city",cityId);
                 startActivityForResult(intent,FORMBANKSEARCHBASE) ;
 
 //                toActivity(BankSearchActivity.createIntent(context).putExtra("searchPageFrom","1"));
@@ -243,12 +272,16 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
                     }
                     //省份结果
                      provinceBean = data.getParcelableExtra("province");
+                     proId = provinceBean.getId();
+                     proName = provinceBean.getName();
                     //城市结果
                      cityBean = data.getParcelableExtra("city");
+                     cityName = cityBean.getName();
+                     cityId = cityBean.getId();
                     //区域结果
                      areaBean = data.getParcelableExtra("area");
 
-                    idcard_area.setText(provinceBean.getName()+cityBean.getName()+areaBean.getName());
+                     idcard_area.setText(provinceBean.getName()+cityBean.getName()+areaBean.getName());
 
                 }
 
@@ -264,35 +297,34 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
     private void uploadBankCradMsg() {
 
         String topBank = card_openbank.getText().toString();
-        String bankArea = idcard_area.getText().toString();
         String subBank = debicard_subbranch.getText().toString();
 
-        if (topBank.equals("")) {
-            Toast.makeText(this, "开户总行为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (topBank!=null&&topBank.equals("")) {
+//            Toast.makeText(this, "开户总行为空", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
-        if (provinceBean.getId().equals("")) {
+        if (proId==null||proId.equals("")) {
             Toast.makeText(this, "开户省份为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (cityBean.getId().equals("")) {
+        if (cityId==null||cityId.equals("")) {
             Toast.makeText(this, "开户城市为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (subBank.equals("")) {
+        if (subBank==null||subBank.equals("")) {
             Toast.makeText(this, "开户支行为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (bankNumber.equals("")) {
+        if (bankNumber==null||bankNumber.equals("")) {
             Toast.makeText(this, "结算账户为空", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        HttpRequest.addStlBankInfo(bankNumber, topBankName,topBankNo,subbranchBankName,subbranchBankNo,provinceBean.getId(),cityBean.getId(),0, new OnHttpResponseListener() {
+        HttpRequest.addStlBankInfo(bankNumber, topBankName,topBankNo,subbranchBankName,subbranchBankNo,proId,cityId,0, new OnHttpResponseListener() {
 
             @Override
             public void onHttpResponse(int requestCode, String resultJson, Exception e) {
@@ -334,7 +366,7 @@ public class MyBankCardAddActivity extends BaseActivity implements OnClickListen
                     toActivity(intent);
 
                 }else{
-                    showShortToast("登陆失败");
+                    showShortToast("上传失败");
                 }
 
             }

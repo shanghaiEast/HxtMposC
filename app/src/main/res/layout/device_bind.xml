@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/activity_page"
-    android:background="@color/color_bg_layout">
+    >
 
     <RelativeLayout style="@style/topbar_bg"
         android:id="@+id/titlebar_bindpos"
@@ -27,11 +27,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/bindpos_gif"
+            android:layout_width="@dimen/dimen_200"
+            android:layout_height="@dimen/dimen_200"
             android:layout_gravity="center"
-            android:src="@drawable/pic_process2x" />
+            android:src="@drawable/search_pos"/>
 
 
         <TextView
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="请连接刷卡器"
+            android:textStyle="bold"
             android:textColor="@color/color_464C55"
             android:textSize="16sp" />
 

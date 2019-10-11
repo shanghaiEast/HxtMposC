@@ -455,6 +455,17 @@ public class HttpRequest {
 		HttpManager.getInstance().post(token,request, URL_BASE + "/term/list", requestCode, listener);
 	}
 
+	/**
+	 * 认证状态
+	 * @param requestCode
+	 * @param listener
+	 */
+	public static void chkRealSts(final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		String token =  AppApplication.getInstance().getToken();
+		HttpManager.getInstance().post(token,request, URL_BASE + "/usr/chkRealSts", requestCode, listener);
+	}
+
     /**
      * 系统公告
      * @param requestCode

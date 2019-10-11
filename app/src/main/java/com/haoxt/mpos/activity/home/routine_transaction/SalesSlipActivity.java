@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.haoxt.mpos.R;
@@ -28,6 +29,7 @@ import static tft.mpos.library.util.CommonUtil.toActivity;
 /**
  * 电子签购单
  */
+
 public class SalesSlipActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mConfirmBt;
@@ -49,7 +51,7 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_sales_slip);
+        setContentView(R.layout.activity_sales_slip);
 
         //功能归类分区方法，必须调用<<<<<<<<<<
         initView();
@@ -60,8 +62,11 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
     }
 
     private TextView deviceSn,merchantName,merchantNumber,acquiringBank,termValidity,cardOrganization,
-            issuingBank,cardNo,transationType,transationTime,searchNumber,trancastionAmount;
+            issuingBank,cardType,cardNo,transationType,transationTime,searchNumber,trancastionAmount;
     private ImageView purchaseImg;
+
+    private LinearLayout deviceSnll,merchantNamell,merchantNumberll,acquiringBankll,termValidityll,cardOrganizationll,
+            issuingBankll,cardTypell,cardNoll,transationTypell,transationTimell,searchNumberll,trancastionAmountll;
 
     @Override
     public void initView() {
@@ -73,12 +78,28 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
         termValidity =   findView(R.id.sales_slip_term_validity);
         cardOrganization =   findView(R.id.sales_slip_card_organization);
         issuingBank =  findView(R.id.sales_slip_issuing_bank);
+        cardType = findView(R.id.sales_slip_card_type);
         cardNo =   findView(R.id.sales_slip_card_no);
         transationType = findView(R.id.sales_slip_transation_type);
         transationTime =  findView(R.id.sales_slip_transation_time);
         searchNumber =  findView(R.id.sales_slip_search_number);
         trancastionAmount =  findView(R.id.sales_slip_search_amount);
         purchaseImg = findView(R.id.salaspurchase_purchase_img);
+
+        deviceSnll = findView(R.id.sales_slip_device_sn_ll);
+//        merchantNamell = findView(R.id.sales_slip_merchant_name_ll);
+//        merchantNumberll = findView(R.id.sales_slip_merchant_number_ll);
+        acquiringBankll = findView(R.id.sales_slip_acquiring_bank_ll);
+        termValidityll = findView(R.id.sales_slip_term_validity_ll);
+        cardOrganizationll = findView(R.id.sales_slip_card_organization_ll);
+        issuingBankll = findView(R.id.sales_slip_issuing_bank_ll);
+        cardTypell = findView(R.id.sales_slip_card_type_ll);
+        cardNoll = findView(R.id.sales_slip_card_no_ll);
+//        transationTypell = findView(R.id.sales_slip_transation_type_ll);
+//        transationTimell = findView(R.id.sales_slip_transation_time_ll);
+//        searchNumberll = findView(R.id.sales_slip_search_number_ll);
+//        trancastionAmountll = findView(R.id.sales_slip_device_sn_ll);
+
 
         mConfirmBt = findView(R.id.confirm_bt);
     }
@@ -96,6 +117,7 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
      * 查询签购单
      * @param pageData
      */
+
     private void getSalesAlipData(HashMap<String, Object> pageData) {
         String cseqNo = pageData.get("systemsTraceAuditNumber").toString();
         String batchNo = pageData.get("batchNo").toString();
@@ -111,15 +133,10 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
                 Map<String, Object>  userData = (Map<String, Object>) dataMap.get("rspMap");
 
                 if("000000".equals(dataMap.get("rspCd").toString())){
+                    String type = pageData.get("payType").toString();
 
-                    deviceSn.setText(userData.get("CORG_TRM_NO")==null?"":userData.get("CORG_TRM_NO").toString());
                     merchantName.setText(userData.get("CORG_MERC_NM")==null?"":userData.get("CORG_MERC_NM").toString());
                     merchantNumber.setText(userData.get("CORG_MERC_ID")==null?"":userData.get("CORG_MERC_ID").toString());
-                    acquiringBank.setText(userData.get("CRD_EXP_DT")==null?"":userData.get("CRD_EXP_DT").toString());
-                    termValidity.setText(userData.get("ORGA")==null?"":userData.get("ORGA").toString());
-                    cardOrganization.setText(userData.get("BANK_NAME")==null?"":userData.get("BANK_NAME").toString());
-                    issuingBank.setText(userData.get("CRD_FLG")==null?"":userData.get("CRD_FLG").toString());
-                    cardNo.setText(userData.get("CRD_NO")==null?"":userData.get("CRD_NO").toString());
                     transationType.setText(userData.get("TXN_CD")==null?"":userData.get("TXN_CD").toString());
                     transationTime.setText(userData.get("TXN_TM")==null?"":userData.get("TXN_TM").toString());
                     searchNumber.setText(userData.get("AUT_CD")==null?"":userData.get("AUT_CD").toString());
@@ -128,6 +145,25 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
                     String purchaseImgtx = userData.get("FILE_NO")==null?"":userData.get("FILE_NO").toString();
                     purchaseImg.setImageBitmap(BitmapUtil.base64ToBitmap(purchaseImgtx));
 
+                    if(type.equals("3")){
+
+                        deviceSnll.setVisibility(view.GONE);
+                        acquiringBankll.setVisibility(view.GONE);
+                        termValidityll.setVisibility(view.GONE);
+                        cardOrganizationll.setVisibility(view.GONE);
+                        issuingBankll.setVisibility(view.GONE);
+                        cardTypell.setVisibility(view.GONE);
+                        cardNoll.setVisibility(view.GONE);
+
+                    }else{
+                        deviceSn.setText(userData.get("CORG_TRM_NO")==null?"":userData.get("CORG_TRM_NO").toString());
+                        acquiringBank.setText(userData.get("CRD_EXP_DT")==null?"":userData.get("CRD_EXP_DT").toString());
+                        termValidity.setText(userData.get("ORGA")==null?"":userData.get("ORGA").toString());
+                        cardOrganization.setText(userData.get("BANK_NAME")==null?"":userData.get("BANK_NAME").toString());
+                        issuingBank.setText(userData.get("CRD_FLG")==null?"":userData.get("CRD_FLG").toString());
+                        cardNo.setText(userData.get("CRD_NO")==null?"":userData.get("CRD_NO").toString());
+                        cardType.setText("");//此处需要补充
+                    }
 
                 }else{
                     showShortToast("查询失败");
@@ -146,13 +182,13 @@ public class SalesSlipActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.confirm_bt:
-
-                Intent intent = new Intent(context, TransationResultsActivity.class);
-                intent.putExtra("pageData",(Serializable)pageData);
-                toActivity(intent);
-                break;
-        }
+//        switch (view.getId()) {
+//            case R.id.confirm_bt:
+//
+//                Intent intent = new Intent(context, TransationResultsActivity.class);
+//                intent.putExtra("pageData",(Serializable)pageData);
+//                toActivity(intent);
+//                break;
+//        }
     }
 }

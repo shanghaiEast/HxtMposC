@@ -8,12 +8,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_0"
-        android:layout_weight="@integer/int_6" />
+        android:layout_weight="@integer/int_5" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_0"
-        android:layout_weight="@integer/int_5"
+        android:layout_weight="@integer/int_6"
         android:background="@color/color_white"
         android:orientation="vertical">
 
@@ -62,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginBottom="@dimen/dimen_15"
             android:paddingHorizontal="@dimen/dimen_21">
 
             <RelativeLayout
@@ -214,15 +215,17 @@
                     android:id="@+id/amount_interval_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:text="@string/amount_interval"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/font_15" />
 
                 <RelativeLayout
                     android:layout_width="@dimen/dimen_143"
-                    android:layout_height="@dimen/dimen_32"
+                    android:layout_height="35dp"
                     android:layout_below="@+id/amount_interval_tv"
-                    android:layout_marginTop="@dimen/dimen_20"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/amount_et_bg">
 
                     <ImageView
@@ -245,10 +248,10 @@
 
                 <RelativeLayout
                     android:layout_width="@dimen/dimen_143"
-                    android:layout_height="@dimen/dimen_32"
-                    android:layout_below="@+id/amount_interval_tv"
+                    android:layout_height="36dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/dimen_20"
+                    android:layout_below="@+id/amount_interval_tv"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/amount_et_bg">
 
                     <ImageView
@@ -260,8 +263,8 @@
 
                     <EditText
                         android:id="@+id/end_et"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="115dp"
+                        android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/dimen_22"
                         android:background="@null"
@@ -271,6 +274,7 @@
 
             </RelativeLayout>
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

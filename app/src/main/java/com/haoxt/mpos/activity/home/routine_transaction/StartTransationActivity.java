@@ -23,18 +23,24 @@ import com.haoxt.mpos.R;
 import com.haoxt.mpos.activity.home.DeviceBindActivity;
 import com.haoxt.mpos.activity.home.scanqrcode_transaction.ConfirmTransationActivity;
 import com.haoxt.mpos.activity.home.scanqrcode_transaction.ScanQRcodeActivity;
+import com.haoxt.mpos.application.AppApplication;
+import com.haoxt.mpos.util.HttpRequest;
 import com.haoxt.mpos.widget.MyDialog;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 import tft.mpos.library.base.BaseActivity;
+import tft.mpos.library.interfaces.OnHttpResponseListener;
+import tft.mpos.library.util.StringUtil;
 
 /** 交易金额输入 Activity
  * @author baowen
  * @use toActivity(SettingActivity.createIntent(...));
  */
-public class StartTransationActivity extends BaseActivity implements OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class StartTransationActivity extends BaseActivity implements OnClickListener ,CompoundButton.OnCheckedChangeListener
+{
 	private static final String TAG = "SettingActivity";
 	public static final int REQUEST_TO_CAMERA_SCAN = 22;
 	public LocationClient mLocationClient = null;
@@ -76,7 +82,7 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 	private EditText mNumberEt;
 	private EditText mAuthCodeEt;
 	private TextView bankCardTv;
-	private TextView mBankCardTv;
+	private TextView mBankCardTv,transationTitle;
 	private MyDialog mDialog;
 	private RelativeLayout mAliPayRl;
 	private RelativeLayout mWeChatRl;
@@ -88,20 +94,23 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 	@Override
 	public void initView() {//必须调用
 
-		mBackIv = findView(R.id.back_iv);
 		mTitleTv = findView(R.id.title_tv);
 		mNumberEt = findView(R.id.number_et);
-		mAuthCodeEt = findView(R.id.auth_code_et);
+//		mAuthCodeEt = findView(R.id.auth_code_et);
 		mBankCardTv = findView(R.id.bank_card_tv);
-//		mAliPayRl = findView(R.id.ali_pay_rl);
-//		mWeChatRl = findView(R.id.we_chat_rl);
+
+		mAliPayRl = findView(R.id.ali_pay_rl);
+		mWeChatRl = findView(R.id.we_chat_rl);
+
 		mPayBt = findView(R.id.pay_bt);
+		transationTitle = findView(R.id.transation_type_tx);
 
 		checkBoxes[0] = findView(R.id.we_chat_cb);
 		checkBoxes[1] = findView(R.id.ali_pay_cb);
-
 		checkBoxes[0].setOnCheckedChangeListener(this);
 		checkBoxes[1].setOnCheckedChangeListener(this);
+
+
 //		wechat = findView(R.id.we_chat_cb);
 //		alipay = findView(R.id.ali_pay_cb);
 	}
@@ -110,34 +119,34 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 	//UI显示区(操作UI，但不存在数据获取或处理代码，也不存在事件监听代码)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-	private void showPop() {
-		if (mDialog != null) {
-			mDialog = null;
-		}
-		mDialog = new MyDialog(getActivity());
-		LayoutInflater inflater = getLayoutInflater();
-		RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.popup, null);
+//	private void showPop() {
+//		if (mDialog != null) {
+//			mDialog = null;
+//		}
+//		mDialog = new MyDialog(getActivity());
+//		LayoutInflater inflater = getLayoutInflater();
+//		RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.popup, null);
+//
+//		Button payment = layout.findViewById(R.id.card_payment_bt);
+//		TextView cancel = layout.findViewById(R.id.cancel_tv);
+//		TextView amount = layout.findViewById(R.id.payment_amount_tv);
+//
+//		String acount = mNumberEt.getText().toString();
+//        amount.setText(acount);
+//
+//		cancel.setOnClickListener(this);
+//		payment.setOnClickListener(this);
+//		mDialog.show();
+//		mDialog.setCancelable(false);
+//		mDialog.setContentView(layout);
+//	}
 
-		Button payment = layout.findViewById(R.id.card_payment_bt);
-		TextView cancel = layout.findViewById(R.id.cancel_tv);
-		TextView amount = layout.findViewById(R.id.payment_amount_tv);
-
-		String acount = mNumberEt.getText().toString();
-        amount.setText(acount);
-
-		cancel.setOnClickListener(this);
-		payment.setOnClickListener(this);
-		mDialog.show();
-		mDialog.setCancelable(false);
-		mDialog.setContentView(layout);
-	}
-
-	private void dismissPop() {
-		if (mDialog != null && mDialog.isShowing()) {
-			mDialog.cancel();
-			mDialog = null;
-		}
-	}
+//	private void dismissPop() {
+//		if (mDialog != null && mDialog.isShowing()) {
+//			mDialog.cancel();
+//			mDialog = null;
+//		}
+//	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -171,8 +180,54 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 
 		Intent intent =getIntent();
 		payType = intent.getStringExtra("paytype");
-
 		pageData.put("payType",payType);
+
+		switch (Integer.parseInt(payType)){
+			case 1:
+				transationTitle.setText("普通收款");
+			break;
+
+			case 2:
+				transationTitle.setText("超级收款");
+				break;
+
+			case 3:
+				transationTitle.setText("微信/支付宝");
+				mAliPayRl.setVisibility(View.VISIBLE);
+				mWeChatRl.setVisibility(View.VISIBLE);
+				break;
+
+			case 4:
+				transationTitle.setText("闪付优惠");
+				break;
+
+			default:
+				break;
+
+		}
+
+		HttpRequest.getUserInfo(0, new OnHttpResponseListener() {
+            @Override
+            public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+
+                if(!StringUtil.isEmpty(resultJson)){
+                    Map<String, Object> dataMap =  StringUtil.json2map(resultJson);
+                    Map<String, Object>  userData = (Map<String, Object>) dataMap.get("rspMap");
+
+                    if(dataMap!=null&&"000000".equals(dataMap.get("rspCd").toString())){
+
+						String bankName = userData.get("STL_BANK_NAME")==null?"":userData.get("STL_BANK_NAME").toString();
+						String cardNum = userData.get("CER_NO")==null?"":userData.get("CER_NO").toString();
+						String result = cardNum.substring(cardNum.length()-4);
+
+						mBankCardTv.setText(bankName+"("+result+")");
+
+                    }else{
+                        showShortToast("获取商户信息失败");
+                    }
+                }
+            }
+        });
 
 	}
 
@@ -186,11 +241,27 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 	@Override
 	public void initEvent() {//必须调用
 
-		mBackIv.setOnClickListener(this);
-		mBankCardTv.setOnClickListener(this);
+//		mBackIv.setOnClickListener(this);
+//		mBankCardTv.setOnClickListener(this);
 		mPayBt.setOnClickListener(this);
 
+
 	}
+
+
+	@Override
+	public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+		if(b) {
+			for (int i = 0; i < checkBoxes.length; i++) {
+				if ( checkBoxes[i].getId() == compoundButton.getId()) {
+					checkBoxes[i].setChecked(true);
+				} else {
+					checkBoxes[i].setChecked(false);
+				}
+			}
+		}
+	}
+
 
 
 	@Override
@@ -200,35 +271,26 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 	}
 
 	@Override
+	public void onReturnClick(View v) {
+		finish();
+	}
+
+	@Override
 	public void onClick(View view) {
 		HashMap<String, Object> msg  = new HashMap<String, Object>();
 		msg.put("payType",payType);
 
 		switch (view.getId()) {
-			case R.id.back_iv:
-				getActivity().onBackPressed();
-				break;
+
 
 			case R.id.pay_bt:
-				String acount1 = mNumberEt.getText().toString();
-				if ("".equals(acount1)){
-					Toast.makeText(this, "请输入收款金额", Toast.LENGTH_SHORT).show();
-					return;
-				}
-				showPop();
-				break;
-
-			case R.id.card_payment_bt:
-				dismissPop();
 
 				String acount = mNumberEt.getText().toString();
 				if ("".equals(acount)){
 					Toast.makeText(this, "请输入收款金额", Toast.LENGTH_SHORT).show();
 					return;
 				}
-
 				pageData.put("amount",acount);
-				pageData.put("scantype","aliPay"); //支付宝
 				pageData.put("longitude",longitudeStr);
 				pageData.put("latitude",latitudeStr);
 				pageData.put("province",province);
@@ -251,32 +313,63 @@ public class StartTransationActivity extends BaseActivity implements OnClickList
 
 				}else{ //扫码
 
-					toActivity(ScanQRcodeActivity.createIntent(context), REQUEST_TO_CAMERA_SCAN);
-
+					if(checkBoxes[0].isChecked()){
+						pageData.put("scantype","aliPay"); //支付宝
+					}else if(checkBoxes[1].isChecked()){
+						pageData.put("scantype","wechatPay"); //微信
+					}else{
+						Toast.makeText(this, "请选择付款方式", Toast.LENGTH_SHORT).show();
+						return;
+					}
+					Intent intent1 = ScanQRcodeActivity.createIntent(context);
+					intent1.putExtra("pageData",(Serializable)pageData);
+					toActivity(intent1, REQUEST_TO_CAMERA_SCAN);
 				}
 
 				break;
 
-			case R.id.cancel_tv:
-				dismissPop();
-				break;
+//			case R.id.card_payment_bt:
+//
+//				String acount = mNumberEt.getText().toString();
+//				if ("".equals(acount)){
+//					Toast.makeText(this, "请输入收款金额", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//
+//				pageData.put("amount",acount);
+//				pageData.put("scantype","aliPay"); //支付宝
+//				pageData.put("longitude",longitudeStr);
+//				pageData.put("latitude",latitudeStr);
+//				pageData.put("province",province);
+//				pageData.put("city",city);
+//				pageData.put("district",district);
+//
+//				if(!payType.equals("3")){ //普通
+//					if (payType.equals("1")){
+//						pageData.put("transType","deposit");
+//						pageData.put("actPayType","1");
+//
+//					}else if (payType.equals("4")){
+//						pageData.put("transType","purchase");
+//						pageData.put("actPayType","0");
+//					}
+//
+//					Intent intent = new Intent(context, ConnectPosActivity.class);
+//					intent.putExtra("pageData",(Serializable)pageData);
+//					startActivity(intent);
+//
+//				}else{ //扫码
+//					toActivity(ScanQRcodeActivity.createIntent(context), REQUEST_TO_CAMERA_SCAN);
+//
+//				}
+//				break;
+
+//			case R.id.cancel_tv:
+//				dismissPop();
+//				break;
 
 		}
 
-	}
-
-	@Override
-	public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-		if(b) {
-			for (int i = 0; i < checkBoxes.length; i++) {
-				//不等于当前选中的就变成false
-				if (checkBoxes[i].getText().toString().equals(compoundButton.getText().toString())) {
-					checkBoxes[i].setChecked(true);
-				} else {
-					checkBoxes[i].setChecked(false);
-				}
-			}
-		}
 	}
 
 	private void setLocation() {

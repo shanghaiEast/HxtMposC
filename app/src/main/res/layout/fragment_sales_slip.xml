@@ -252,37 +252,6 @@
                     android:textSize="@dimen/font_14" />
 
                 <TextView
-                    android:id="@+id/sales_slip_card_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dimen_0"
-                    android:layout_weight="@integer/int_1"
-                    android:gravity="center_vertical"
-                    android:text="847393303663893753"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/font_14" />
-
-                <TextView
-                    android:id="@+id/sales_slip_card_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dimen_0"
-                    android:layout_weight="@integer/int_1"
-                    android:gravity="center_vertical"
-                    android:text="883426*****836358"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/font_14" />
-
-                <TextView
-                    android:id="@+id/sales_slip_transation_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dimen_0"
-                    android:layout_weight="@integer/int_1"
-                    android:gravity="center_vertical"
-                    android:text="银行卡"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/font_14" />
-
-                <TextView
-                    android:id="@+id/sales_slip_transation_time"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_weight="@integer/int_1"
@@ -336,7 +305,7 @@
                     android:textSize="@dimen/font_14" />
 
                 <ImageView
-                    android:id="@+id/salaspurchase_purchase_img"
+                    android:id="@+id/"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_0"
                     android:layout_marginTop="@dimen/dimen_8"
